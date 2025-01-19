@@ -330,9 +330,46 @@
 
 
     <div class="games-section">
-        <div class="search-bar">
-            <input type="text" placeholder="Search..." id="gameSearch">
-        </div>
+<div class="search-bar">
+    <input type="text" placeholder="Search..." id="gameSearch">
+</div>
+
+<script>
+    // Search bar functionality
+    document.getElementById('gameSearch').addEventListener('input', function(event) {
+        const input = event.target.value.trim();
+        let url;
+
+        if (input.match(/\.(com|net|io|html)$/i)) {
+            // If input ends with .com, .net, .io, or .html
+            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://' + input;
+        } else if (input) {
+            // If it's plain text, search on Bing
+            url = 'https://play.szvy.win/embed.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
+        }
+
+        if (url) {
+            // Create iframe and append it to the body
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.style.position = 'fixed';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.border = 'none';
+            iframe.style.zIndex = '9999';
+
+            // Remove existing iframe if any
+            const existingIframe = document.querySelector('iframe');
+            if (existingIframe) {
+                existingIframe.remove();
+            }
+
+            document.body.appendChild(iframe);
+        }
+    });
+</script>
         <div class="games-container" id="games">
             <div onclick="gameshow('https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/mm.xml&container=ig')" class="game-card">
                 <img src="./img/monkeymart.png" alt="Game 1">
