@@ -342,10 +342,10 @@
 
         if (input.match(/\.(com|net|io|html)$/i)) {
             // If input ends with .com, .net, .io, or .html
-            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://' + input;
+            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://mylearning.jakesthoughts.xyz/static/iframe.html#' + 'https://' + input;
         } else if (input) {
             // If it's plain text, search on Bing
-            url = 'https://play.szvy.win/embed.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
+            url = 'https://mylearning.jakesthoughts.xyz/static/iframe.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
         }
 
         if (url) {
