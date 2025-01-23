@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,6 +175,7 @@
         .search-bar {
             margin-bottom: 20px;
             text-align: center;
+            display: none;
         }
 
         .search-bar input {
@@ -300,7 +302,39 @@
             background: #00ff00;
             transition: width 0.1s linear;
         }
+        .searchbar {
+            margin: 20px auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
 
+        .searchbar input {
+            width: 60%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid rgba(0, 128, 0, 0.8);
+            font-size: 1em;
+            background: rgba(10, 20, 15, 0.9);
+            color: white;
+        }
+
+        .searchbar button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #267b2a;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .searchbar button:hover {
+            background: #3ac041;
+        }
     </style>
 </head>
 <body>
@@ -370,27 +404,11 @@
         }
     });
 </script>
+        <div class="searchbar">
+            <input type="text" placeholder="Enter URL..." id="searchBar">
+        <button id="searchButton">Go</button>
+        </div>
         <div class="games-container" id="games">
-            <div onclick="gameshow('https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/mm.xml&container=ig')" class="game-card">
-                <img src="./img/monkeymart.png" alt="Game 1">
-                <div class="game-text">Monkey Mart</div>
-            </div>
-            <div onclick="gameshow('https://variant76652-opensocial.googleusercontent.com/gadgets/ifr?container=ig&url=https://cdn.jsdelivr.net/gh/bobydob/JSEngine@e7d53b913d54429e5e118ca9541fb0f8f1f66bdc/dist/cc.xml')" class="game-card">
-                <img src="./img/cookie.png" alt="Game 2">
-                <div class="game-text">Cookie Clicker</div>
-            </div>
-            <div onclick="gameshow('https://prefix82060-opensocial.googleusercontent.com/gadgets/ifr?container=ig&url=https://cdn.jsdelivr.net/gh/bobydob/JSEngine@c0c9f32fd575688ff4b14309e9acf19b73f15e2a/build/bs/bs.xml')" class="game-card">
-                <img src="./img/basketstars.png" alt="Game 3">
-                <div class="game-text">Basketball Legends</div>
-            </div>
-            <div onclick="gameshow('https://selenite.cc/semag/bitlife/index.html')" class="game-card">
-                <img src="./img/bitlife.png" alt="Game 4">
-                <div class="game-text">Bitlife</div>
-            </div>
-            <div onclick="gameshow('https://google.com')" class="game-card">
-                <img src="./img/google.png" alt="Game 5">
-                <div class="game-text">Google</div>
-            </div>
             <div onclick="gameshow('https://duckduckgo.com')" class="game-card">
                 <img src="./img/bitlife.png" alt="Game 6">
                 <div class="game-text">DuckDuckGo</div>
@@ -399,8 +417,8 @@
                 <img src="./img/discord.png" alt="Game 7">
                 <div class="game-text">Discord</div>
             </div>
-            <div onclick="gameshow('https://github.com')" class="game-card">
-                <img style="background-color: white;" src="./img/github.png" alt="Game 8">
+            <div onclick="gameshow('https://google.com')" class="game-card">
+                <img style="background-color: white;" src="./img/google.png" alt="Game 8">
                 <div class="game-text">Github</div>
             </div>
         </div>
@@ -484,6 +502,16 @@
         toggleBtn.addEventListener('click', () => {
             sidebar.classList.toggle('show');
         });
+        </script>
+        <script>
+            document.getElementById('searchButton').addEventListener('click', function () {
+                const input = document.getElementById('searchBar').value.trim();
+                if (input.match(/^https?:\/\//)) {
+                    window.location.href = `/static/iframe.html#${input}`;
+                } else if (input) {
+                    window.location.href = `/static/iframe.html#https://${input}`;
+                }
+            });
         </script>
 </body>
 </html>
