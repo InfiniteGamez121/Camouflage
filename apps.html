@@ -1,0 +1,485 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camouflage</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        * {
+            cursor: none;
+            box-sizing: border-box;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a2b1f, #0d1912);
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a2b1f, #0d1912);
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('/bg.gif');
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .crosshair {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+            background-image: linear-gradient(to left, darkblue, darkviolet);
+            background-size: 100% 100%;
+            border: 2px solid rgba(0, 128, 0, 0.8);
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-image: url('camouflage.gif');
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+            transition: left 0.4s ease;
+        }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+        .sidebar .logo {
+            margin: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .sidebar .logo h1 {
+            font-size: 1.5em;
+            color: white;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 0.8s forwards;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            width: 100%;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            text-decoration: none;
+            color: #d1d1e0;
+            font-size: 1.1em;
+            transition: background 0.3s ease, color 0.3s ease;
+            border-radius: 2vh;
+        }
+
+        .sidebar ul li a:hover {
+            background: rgba(79, 255, 79, 0.7);
+            color: white;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 15px;
+            font-size: 1.5em;
+        }
+
+        .sidebar ul li a span {
+            opacity: 0;
+            animation: fadeIn 0.8s forwards;
+            white-space: nowrap;
+        }
+
+        .sidebar .footer {
+            margin-top: auto;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #565676;
+            font-size: 0.9em;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 10px 20px;
+            background: #267b2a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #3ac041;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .games-section {
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid rgba(0, 128, 0, 0.8);
+            font-size: 1em;
+            background: rgba(10, 20, 15, 0.9);
+            color: white;
+        }
+
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .game-card {
+            width: 150px;
+            height: 150px;
+            background: rgba(0, 128, 0, 0.6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: transparent;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            background: rgba(0, 255, 0, 0.7);
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+        }
+
+        .game-card img,
+        .game-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .game-card video {
+            filter: brightness(0.5);
+            visibility: hidden;
+        }
+
+        .game-card:hover video {
+            visibility: visible; 
+            filter: brightness(1); 
+        }
+
+        .game-card:hover img {
+            filter: brightness(0.5); 
+        }
+
+        .game-card .game-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2em;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover .game-text {
+            opacity: 1; 
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 1); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 99999;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .loading-screen.loaded {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-logo {
+            margin-bottom: 20px;
+        }
+
+        .loading-logo img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .loading-bar {
+            width: 80%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0;
+            background: #00ff00;
+            transition: width 0.1s linear;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <img src="favicon.gif" alt="Logo">
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="progressBar"></div>
+        </div>
+        <div>Loading...</div>
+    </div>
+
+    <div class="crosshair"></div>
+    <button class="toggle-btn"><i class="fa fa-bars"></i></button>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="favicon.gif" alt="Logo">
+            <h1>Camouflage</h1>
+        </div>
+        <ul>
+            <li><a href="/"><i class="fa fa-home"></i><span>Home</span></a></li>
+            <li><a href="/apps.html"><i class="material-icons">apps</i><span>Apps</span></a></li>
+            <li><a href="/games/"><i class="fa fa-gamepad"></i><span>Games</span></a></li>
+        </ul>
+    </div>
+
+
+    <div class="games-section">
+<div class="search-bar">
+    <input type="text" placeholder="Search..." id="gameSearch">
+</div>
+
+<script>
+    // Search bar functionality
+    document.getElementById('gameSearch').addEventListener('input', function(event) {
+        const input = event.target.value.trim();
+        let url;
+
+        if (input.match(/\.(com|net|io|html)$/i)) {
+            // If input ends with .com, .net, .io, or .html
+            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://mylearning.jakesthoughts.xyz/static/iframe.html#' + 'https://' + input;
+        } else if (input) {
+            // If it's plain text, search on Bing
+            url = 'https://mylearning.jakesthoughts.xyz/static/iframe.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
+        }
+
+        if (url) {
+            // Create iframe and append it to the body
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.style.position = 'fixed';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.border = 'none';
+            iframe.style.zIndex = '9999';
+
+            // Remove existing iframe if any
+            const existingIframe = document.querySelector('iframe');
+            if (existingIframe) {
+                existingIframe.remove();
+            }
+
+            document.body.appendChild(iframe);
+        }
+    });
+</script>
+        <div class="games-container" id="games">
+            <div onclick="gameshow('https://google.com')" class="game-card">
+                <img src="./img/google.png" alt="Game 5">
+                <div class="game-text">Google</div>
+            </div>
+            <div onclick="gameshow('https://duckduckgo.com')" class="game-card">
+                <img src="./img/duckduckgo.png" alt="Game 6">
+                <div class="game-text">DuckDuckGo</div>
+            </div>
+            <div onclick="gameshow('https://discord.com')" class="game-card">
+                <img src="./img/discord.png" alt="Game 7">
+                <div class="game-text">Discord</div>
+            </div>
+            <div onclick="gameshow('https://github.com')" class="game-card">
+                <img style="background-color: white;" src="./img/github.png" alt="Game 8">
+                <div class="game-text">Github</div>
+            </div>
+            <div onclick="gameshow('https://scratch.mit.edu')" class="game-card">
+                <img style="background-color: white;" src="https://plainfieldnj.librarycalendar.com/sites/default/files/2024-06/scratch-coding.jpg" alt="Game 9">
+                <div class="game-text">Github</div>
+            </div>
+            <div onclick="gameshow('https://vscode.dev')" class="game-card">
+                <img style="background-color: white;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/512px-Visual_Studio_Code_1.35_icon.svg.png" alt="Game 10">
+                <div class="game-text">Github</div>
+            </div>
+            <div onclick="gameshow('https://ext-remover.net')" class="game-card">
+                <img style="background-color: white;" src="https://user-images.githubusercontent.com/58097612/191354621-bf7ff072-b9d7-46b5-994a-4d2adbf0e4f3.png" alt="Game 11">
+                <div class="game-text">Github</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lastTime = 0;
+        const throttleDelay = 10;
+
+        document.addEventListener('mousemove', function (e) {
+            const currentTime = new Date().getTime();
+            if (currentTime - lastTime >= throttleDelay) {
+                lastTime = currentTime;
+                const crosshair = document.querySelector('.crosshair');
+                const x = e.clientX;
+                const y = e.clientY;
+                crosshair.style.left = x + 'px';
+                crosshair.style.top = y + 'px';
+            }
+        });
+
+        const gameSearch = document.getElementById('gameSearch');
+        const games = document.querySelectorAll('.game-card');
+
+        gameSearch.addEventListener('input', () => {
+            const query = gameSearch.value.toLowerCase();
+            games.forEach(game => {
+                game.style.display = game.textContent.toLowerCase().includes(query) ? 'flex' : 'none';
+            });
+        });
+
+        games.forEach(game => {
+            const video = game.querySelector('video');
+            game.addEventListener('mouseenter', () => {
+                video.play();
+                video.currentTime = 0;
+            });
+
+            game.addEventListener('mouseleave', () => {
+                video.pause();
+            });
+        });
+
+        let progress = 0;
+        const progressBar = document.getElementById('progressBar');
+        const loadingScreen = document.getElementById('loadingScreen');
+        
+        function updateProgressBar() {
+            progress += 1;
+            progressBar.style.width = progress + '%';
+            
+            if (progress >= 100) {
+                setTimeout(() => {
+                    loadingScreen.classList.add('loaded');
+                }, 1000);
+            }
+        }
+
+        setInterval(updateProgressBar, 50);
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingScreen.classList.add('loaded');
+            }, 2000); 
+        });
+        function gameshow(url) {
+            window.location.href = "/static/iframe.html#" + url;
+        }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-97C832V55B"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-97C832V55B');
+
+          const toggleBtn = document.querySelector('.toggle-btn');
+        const sidebar = document.querySelector('.sidebar');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+        });
+        </script>
+</body>
+</html>
