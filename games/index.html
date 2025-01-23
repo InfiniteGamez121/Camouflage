@@ -333,43 +333,7 @@
 <div class="search-bar">
     <input type="text" placeholder="Search..." id="gameSearch">
 </div>
-
-<script>
-    // Search bar functionality
-    document.getElementById('gameSearch').addEventListener('input', function(event) {
-        const input = event.target.value.trim();
-        let url;
-
-        if (input.match(/\.(com|net|io|html)$/i)) {
-            // If input ends with .com, .net, .io, or .html
-            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://mylearning.jakesthoughts.xyz/static/iframe.html#' + 'https://' + input;
-        } else if (input) {
-            // If it's plain text, search on Bing
-            url = 'https://mylearning.jakesthoughts.xyz/static/iframe.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
-        }
-
-        if (url) {
-            // Create iframe and append it to the body
-            const iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.style.position = 'fixed';
-            iframe.style.top = '0';
-            iframe.style.left = '0';
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.border = 'none';
-            iframe.style.zIndex = '9999';
-
-            // Remove existing iframe if any
-            const existingIframe = document.querySelector('iframe');
-            if (existingIframe) {
-                existingIframe.remove();
-            }
-
-            document.body.appendChild(iframe);
-        }
-    });
-</script>
+        
         <div class="games-container" id="games">
             <div onclick="gameshow('https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/mm.xml&container=ig')" class="game-card">
                 <img src="/img/monkeymart.png" alt="Game 1">
@@ -395,15 +359,15 @@
                 <img src="https://img.itch.zone/aW1nLzkxMzI5NjkucG5n/original/splulK.png" alt="Game 5">
                 <div class="game-text">Bad Monday Sim</div>
             </div>
-            <div onclick="window.location.href = '/games/clretrobowlfixed.html')" class="game-card">
+            <div onclick="window.open('/games/clretrobowlfixed.html');" class="game-card">
                 <img src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/ee9ca3764ef4289a48a1ebf457ef605441ed1f35a0f2eb12707a70d609e53686.png" alt="Game 6">
                 <div class="game-text">RetroBowl</div>
             </div>
-            <div onclick="gameshow('/games/clslope3.html')" class="game-card"
+            <div onclick="window.open('/games/clslope3.html');" class="game-card"
                 <img src="https://retrobowl.click/wp-content/uploads/2024/03/slope-3-icon.jpg" alt="Game 7">
                 <div class="game-text">Slope 3</div>
             </div>
-            <div onclick="gameshow('/games/cl1v1lol.html)" class="game-card">
+            <div onclick="window.open('/games/cl1v1lol.html');" class="game-card">
                 <img src="https://vipogames.com/wp-content/uploads/2024/02/1v1-lol-unblocked.jpg" alt="Game 8">
                 <div class="game-text">1v1.lol</div>
             </div>
