@@ -141,7 +141,8 @@
         .toggle-btn {
             position: absolute;
             top: 15px;
-            left: 15px;
+            margin-left: 15px;
+            margin-right: 15px;
             padding: 10px 20px;
             background: #267b2a;
             color: white;
@@ -316,6 +317,7 @@
 
     <div class="crosshair"></div>
     <button class="toggle-btn"><i class="fa fa-bars"></i></button>
+    <button onclick="fixthelag();" class="toggle-btn" style="right: 0;">Lag Fix</button>
     <div class="sidebar">
         <div class="logo">
             <img src="favicon.gif" alt="Logo">
@@ -480,6 +482,18 @@
         toggleBtn.addEventListener('click', () => {
             sidebar.classList.toggle('show');
         });
+        const cursorpointer = document.getElementById('crosshair');
+    const sidenavbar = document.getElementById("sidebar");
+    const body = document.getElementById("body");
+    const imageside = document.getElementById("imageside");
+
+    function fixthelag() {
+        cursorpointer.style.display = "none";
+        sidenavbar.style.background = "darkgreen";
+        body.style.cursor = "default";
+        imageside.style.display = "none";
+        body.style.backgroundImage = "none";
+    }
         </script>
 </body>
 </html>
