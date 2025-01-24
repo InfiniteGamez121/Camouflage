@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         * {
-            cursor: none;
             box-sizing: border-box;
         }
 
@@ -25,6 +24,7 @@
             font-family: Arial, sans-serif;
             height: 100%;
             overflow: hidden;
+            cursor: none;
         }
 
         body {
@@ -142,7 +142,8 @@
         .toggle-btn {
             position: absolute;
             top: 15px;
-            left: 15px;
+            margin-left: 15px;
+            margin-right: 15px;
             padding: 10px 20px;
             background: #267b2a;
             color: white;
@@ -208,7 +209,6 @@
             overflow: hidden;
             transition: all 0.5s ease;
             text-align: center;
-            cursor: pointer;
         }
 
         .game-card:hover {
@@ -337,10 +337,10 @@
         }
     </style>
 </head>
-<body>
+<body id="body">
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-logo">
-            <img src="/favicon.gif" alt="Logo">
+            <img id="imageside" src="/favicon.gif" alt="Logo">
         </div>
         <div class="loading-bar">
             <div class="loading-progress" id="progressBar"></div>
@@ -348,9 +348,10 @@
         <div>Loading...</div>
     </div>
 
-    <div class="crosshair"></div>
+    <div id="crosshair" class="crosshair"></div>
     <button class="toggle-btn"><i class="fa fa-bars"></i></button>
-    <div class="sidebar">
+    <button onclick="fixthelag();" class="toggle-btn" style="right: 0;">Lag Fix</button>
+    <div class="sidebar" id="sidebar">
         <div class="logo">
             <img src="favicon.gif" alt="Logo">
             <h1>Camouflage</h1>
@@ -369,6 +370,18 @@
 </div>
 
 <script>
+    const cursorpointer = document.getElementById('crosshair');
+    const sidenavbar = document.getElementById("sidebar");
+    const body = document.getElementById("body");
+    const imageside = document.getElementById("imageside");
+
+    function fixthelag() {
+        cursorpointer.style.display = "none";
+        sidenavbar.style.background = "darkgreen";
+        body.style.cursor = "default";
+        imageside.style.display = "none";
+    }
+    
     // Search bar functionality
     document.getElementById('gameSearch').addEventListener('input', function(event) {
         const input = event.target.value.trim();
@@ -419,12 +432,14 @@
             </div>
             <div onclick="gameshow('https://google.com')" class="game-card">
                 <img style="background-color: white;" src="./img/google.png" alt="Game 8">
-                <div class="game-text">Github</div>
+                <div class="game-text">Google</div>
             </div>
         </div>
     </div>
 
     <script>
+
+
         let lastTime = 0;
         const throttleDelay = 10;
 
