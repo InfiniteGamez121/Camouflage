@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         * {
-            cursor: none;
             box-sizing: border-box;
         }
 
@@ -24,6 +23,7 @@
             font-family: Arial, sans-serif;
             height: 100%;
             overflow: hidden;
+            cursor: none;
         }
 
         body {
@@ -304,10 +304,10 @@
 
     </style>
 </head>
-<body>
+<body id="body">
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-logo">
-            <img src="favicon.gif" alt="Logo">
+            <img id="imageside" src="/favicon.gif" alt="Logo">
         </div>
         <div class="loading-bar">
             <div class="loading-progress" id="progressBar"></div>
@@ -315,10 +315,10 @@
         <div>Loading...</div>
     </div>
 
-    <div class="crosshair"></div>
+    <div id="crosshair" class="crosshair"></div>
     <button class="toggle-btn"><i class="fa fa-bars"></i></button>
     <button onclick="fixthelag();" class="toggle-btn" style="right: 0;">Lag Fix</button>
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <div class="logo">
             <img src="favicon.gif" alt="Logo">
             <h1>Camouflage</h1>
@@ -337,6 +337,19 @@
 </div>
 
 <script>
+        const cursorpointer = document.getElementById('crosshair');
+        const sidenavbar = document.getElementById("sidebar");
+        const body = document.getElementById("body");
+        const imageside = document.getElementById("imageside");
+
+        function fixthelag() {
+            cursorpointer.style.display = "none";
+            sidenavbar.style.background = "darkgreen";
+            body.style.cursor = "default";
+            imageside.style.display = "none";
+            body.style.backgroundImage = "none";
+        }
+
     // Search bar functionality
     document.getElementById('gameSearch').addEventListener('input', function(event) {
         const input = event.target.value.trim();
@@ -482,18 +495,6 @@
         toggleBtn.addEventListener('click', () => {
             sidebar.classList.toggle('show');
         });
-        const cursorpointer = document.getElementById('crosshair');
-    const sidenavbar = document.getElementById("sidebar");
-    const body = document.getElementById("body");
-    const imageside = document.getElementById("imageside");
-
-    function fixthelag() {
-        cursorpointer.style.display = "none";
-        sidenavbar.style.background = "darkgreen";
-        body.style.cursor = "default";
-        imageside.style.display = "none";
-        body.style.backgroundImage = "none";
-    }
         </script>
 </body>
 </html>
