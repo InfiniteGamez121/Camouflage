@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +55,7 @@
         .sidebar {
             width: 250px;
             height: 100%;
-            background-image: url('camouflage.gif');
+            background-image: url('/camouflage.gif');
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -320,7 +317,7 @@
     <button onclick="fixthelag();" class="toggle-btn" style="right: 0;">Lag Fix</button>
     <div class="sidebar" id="sidebar">
         <div class="logo">
-            <img src="favicon.gif" alt="Logo">
+            <img src="/favicon.gif" alt="Logo">
             <h1>Camouflage</h1>
         </div>
         <ul>
@@ -338,6 +335,19 @@
 </div>
 
 <script>
+        const cursorpointer = document.getElementById('crosshair');
+        const sidenavbar = document.getElementById("sidebar");
+        const body = document.getElementById("body");
+        const imageside = document.getElementById("imageside");
+
+        function fixthelag() {
+            cursorpointer.style.display = "none";
+            sidenavbar.style.background = "darkgreen";
+            body.style.cursor = "default";
+            imageside.style.display = "none";
+            body.style.backgroundImage = "none";
+        }
+
     // Search bar functionality
     document.getElementById('gameSearch').addEventListener('input', function(event) {
         const input = event.target.value.trim();
@@ -401,18 +411,6 @@
     </div>
 
     <script>
-        const cursorpointer = document.getElementById('crosshair');
-        const sidenavbar = document.getElementById("sidebar");
-        const body = document.getElementById("body");
-        const imageside = document.getElementById("imageside");
-
-        function fixthelag() {
-            cursorpointer.style.display = "none";
-            sidenavbar.style.background = "darkgreen";
-            body.style.cursor = "default";
-            imageside.style.display = "none";
-            body.style.backgroundImage = "none";
-        }
         let lastTime = 0;
         const throttleDelay = 10;
 
