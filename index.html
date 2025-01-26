@@ -349,8 +349,9 @@
     </div>
 
     <div id="crosshair" class="crosshair"></div>
-    <button class="toggle-btn"><i class="fa fa-bars"></i></button>
+    <button class="toggle-btn"><i class="fa fa-bars" style="right: 100;"></i></button>
     <button onclick="fixthelag();" class="toggle-btn" style="right: 0;">Lag Fix</button>
+    <button onclick="abcloak();" class="toggle-btn" style="right: 50;">Lag Fix</button>
     <div class="sidebar" id="sidebar">
         <div class="logo">
             <img src="favicon.gif" alt="Logo">
@@ -528,6 +529,16 @@
                     window.location.href = `/static/iframe.html#https://${input}`;
                 }
             });
+            function abcloak() {
+            var win = window.open()
+            var url = "/";
+            var iframe = win.document.createElement('iframe')
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.src = url
+            win.document.body.appendChild(iframe)
+            }
         </script>
 </body>
 </html>
