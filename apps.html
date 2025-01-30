@@ -353,7 +353,6 @@
         let url;
 
         if (input.match(/\.(com|net|io|html|org)$/i)) {
-            // If input ends with .com, .net, .io, .html or .org
             url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://mylearning.jakesthoughts.xyz/static/iframe.html#' + 'https://' + input;
         } else if (input) {
             // If it's plain text, search on Bing
