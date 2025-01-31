@@ -352,11 +352,11 @@
         const input = event.target.value.trim();
         let url;
 
-        if (input.match(/\.(com|net|io|html|org)$/i)) {
-            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://mylearning.jakesthoughts.xyz/static/iframe.html#' + 'https://' + input;
+        if (input.match(/\.(com|net|io|html|org|site)$/i)) {
+            url = input.startsWith('http://') || input.startsWith('https://') ? input : '/static/iframe.html#' + 'https://' + input;
         } else if (input) {
             // If it's plain text, search on Bing
-            url = 'https://mylearning.jakesthoughts.xyz/static/iframe.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
+            url = '/static/iframe.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
         }
 
         if (url) {
