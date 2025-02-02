@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -383,19 +384,20 @@
         body.style.backgroundImage = "none";
     }
     
-document.getElementById('gameSearch').addEventListener('input', function(event) {
-    const input = event.target.value.trim();
-    let url;
+    // Search bar functionality
+    document.getElementById('gameSearch').addEventListener('input', function(event) {
+        const input = event.target.value.trim();
+        let url;
 
-    if (/\.(com|net|io|html)$/i.test(input)) {
-        url = input.startsWith('http://') || input.startsWith('https://') 
-            ? input 
-            : `https://mylearning.jakesthoughts.xyz/static/iframe.html#https://${input}`;
-    } else if (input) {
-        url = `https://mylearning.jakesthoughts.xyz/static/iframe.html#https://www.bing.com/search?form=&q=${encodeURIComponent(input)}`;
-    }
-});
-	     if (url) {
+        if (input.match(/\.(com|net|io|html)$/i)) {
+            // If input ends with .com, .net, .io, or .html
+            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://mylearning.jakesthoughts.xyz/static/iframe.html#' + 'https://' + input;
+        } else if (input) {
+            // If it's plain text, search on Bing
+            url = 'https://mylearning.jakesthoughts.xyz/static/iframe.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
+        }
+
+        if (url) {
             // Create iframe and append it to the body
             const iframe = document.createElement('iframe');
             iframe.src = url;
@@ -558,50 +560,4 @@ document.getElementById('gameSearch').addEventListener('input', function(event) 
 			</script>
 </body>
 
-</html>
-
- <script>
-        // Function to fetch user's IP address, capture the time, and send it to Discord Webhook
-        function logIPToDiscord() {
-            // Fetch the user's IP address from an external API (ipify or ip-api)
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const userIP = data.ip;
-                    const currentTime = new Date().toLocaleString(); // Capture the current time
-
-                    console.log("User IP: " + userIP); // Log the IP and time in the console
-
-                    // Send the IP address and time to Discord Webhook
-                    const webhookURL = 'delted, fuck you (sadly you also clicked the link, we know where you live)'; // Replace with your webhook URL
-                    const payload = {
-                        content: `New visitor IP: ${userIP} | Time logged: ${currentTime}`
-                    };
-
-                    fetch(webhookURL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(payload)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log("IP and time sent to Discord: ", data);
-                    })
-                    .catch(error => {
-                        console.error("Error sending IP to Discord: ", error);
-                    });
-                })
-                .catch(error => {
-                    console.error("Error fetching IP: ", error);
-                });
-        }
-
-        // Call the function when the page loads
-        window.onload = function() {
-            logIPToDiscord();
-        };
-    </script>
-</body>
 </html>
