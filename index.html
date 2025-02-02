@@ -383,20 +383,19 @@
         body.style.backgroundImage = "none";
     }
     
-    // Search bar functionality
-    document.getElementById('gameSearch').addEventListener('input', function(event) {
-        const input = event.target.value.trim();
-        let url;
+document.getElementById('gameSearch').addEventListener('input', function(event) {
+    const input = event.target.value.trim();
+    let url;
 
-        if (input.match(/\.(com|net|io|html)$/i)) {
-            // If input ends with .com, .net, .io, or .html
-            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://mylearning.jakesthoughts.xyz/static/iframe.html#' + 'https://' + input;
-        } else if (input) {
-            // If it's plain text, search on Bing
-            url = 'https://mylearning.jakesthoughts.xyz/static/iframe.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
-        }
-
-        if (url) {
+    if (/\.(com|net|io|html)$/i.test(input)) {
+        url = input.startsWith('http://') || input.startsWith('https://') 
+            ? input 
+            : `https://mylearning.jakesthoughts.xyz/static/iframe.html#https://${input}`;
+    } else if (input) {
+        url = `https://mylearning.jakesthoughts.xyz/static/iframe.html#https://www.bing.com/search?form=&q=${encodeURIComponent(input)}`;
+    }
+});
+	     if (url) {
             // Create iframe and append it to the body
             const iframe = document.createElement('iframe');
             iframe.src = url;
