@@ -13,7 +13,17 @@
 	* {
 	box-sizing: border-box;
 	}
-	
+	.crosshair {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    background: none;
+    border: 4px solid rgba(8, 242, 8, 0.8);
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+	}	
 	html {
 	margin: 0;
 	padding: 0;
@@ -22,7 +32,6 @@
 	font-family: Arial, sans-serif;
 	height: 100%;
 	overflow: hidden;
-	cursor: none;
 	}
 	
 	body {
@@ -36,26 +45,13 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background-image: url('bg.gif');
 	background-position: center;
 	background-size: 100%;
 	}
 	
-	.crosshair {
-	position: absolute;
-	width: 30px;
-	height: 30px;
-	pointer-events: none;
-	background-image: linear-gradient(to left, darkblue, darkviolet);
-	background-size: 100% 100%;
-	border: 2px solid rgba(0, 128, 0, 0.8);
-	z-index: 99999;
-	transform: translate(-50%, -50%);
-	border-radius: 50%;
-	}
-	
 	.sidebar {
-	width: 250px;
+	backdrop-filter: blur(2vh);
+	width: 200px;
 	height: 100%;
 	background-image: url('camouflage.gif');
 	display: flex;
@@ -110,7 +106,7 @@
 	color: #d1d1e0;
 	font-size: 1.1em;
 	transition: background 0.3s ease, color 0.3s ease;
-	border-radius: 2vh;
+	border-radius: 0.2rem;
 	}
 	
 	.sidebar ul li a:hover {
@@ -210,9 +206,8 @@
 	}
 	
 	.game-card:hover {
-	background: rgba(0, 255, 0, 0.7);
-	color: white;
-	box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+	background: rgba(127, 134, 127, 0.81);
+	color: rgb(145, 247, 94);
 	}
 	
 	.game-card img,
@@ -333,9 +328,20 @@
 	.searchbar button:hover {
 	background: #3ac041;
 	}
+	#particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
 	</style>
 </head>
-
+<div id="crosshair" class="crosshair"></div>
+<div id="particle-container"></div>
 <body id="body">
 <body id="body">
 	<div class="loading-screen" id="loadingScreen">
@@ -348,9 +354,7 @@
 			<div>Loading...</div>
 		</div>
 
-		<div id="crosshair" class="crosshair"></div>
 		<button class="toggle-btn"><i class="fa fa-bars" style="left: 0;"></i></button>
-		<button onclick="fixthelag();" class="toggle-btn" style="right: 0;">Lag Fix</button>
 		<button onclick="abcloak();" class="toggle-btn" style="right: 0; margin-right: 100px;">About:Blank</button>
 		<div class="sidebar" id="sidebar">
 			<div class="logo">
@@ -370,55 +374,6 @@
 				<input type="text" placeholder="Search..." id="gameSearch">
 </div>
 
-				<script>
-					const cursorpointer = document.getElementById('crosshair');
-    const sidenavbar = document.getElementById("sidebar");
-    const body = document.getElementById("body");
-    const imageside = document.getElementById("imageside");
-
-    function fixthelag() {
-        cursorpointer.style.display = "none";
-        sidenavbar.style.background = "darkgreen";
-        body.style.cursor = "default";
-        imageside.style.display = "none";
-        body.style.backgroundImage = "none";
-    }
-    
-    // Search bar functionality
-    document.getElementById('gameSearch').addEventListener('input', function(event) {
-        const input = event.target.value.trim();
-        let url;
-
-        if (input.match(/\.(com|net|io|html)$/i)) {
-            // If input ends with .com, .net, .io, or .html
-            url = input.startsWith('http://') || input.startsWith('https://') ? input : 'https://mylearning.jakesthoughts.xyz/static/iframe.html#' + 'https://' + input;
-        } else if (input) {
-            // If it's plain text, search on Bing
-            url = 'https://flage.site/static/iframe.html#https://www.bing.com/search?form=&q=' + encodeURIComponent(input);
-        }
-
-        if (url) {
-            // Create iframe and append it to the body
-            const iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.style.position = 'fixed';
-            iframe.style.top = '0';
-            iframe.style.left = '0';
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.border = 'none';
-            iframe.style.zIndex = '9999';
-
-            // Remove existing iframe if any
-            const existingIframe = document.querySelector('iframe');
-            if (existingIframe) {
-                existingIframe.remove();
-            }
-
-            document.body.appendChild(iframe);
-        }
-    });
-				</script>
 				<div class="searchbar">
 					<input type="text" placeholder="Enter URL..." id="searchBar">
 					<button id="searchButton">Go</button>
@@ -457,42 +412,6 @@
 			</div>
 
 			<script>
-				let lastTime = 0;
-        const throttleDelay = 10;
-
-        document.addEventListener('mousemove', function (e) {
-            const currentTime = new Date().getTime();
-            if (currentTime - lastTime >= throttleDelay) {
-                lastTime = currentTime;
-                const crosshair = document.querySelector('.crosshair');
-                const x = e.clientX;
-                const y = e.clientY;
-                crosshair.style.left = x + 'px';
-                crosshair.style.top = y + 'px';
-            }
-        });
-
-        const gameSearch = document.getElementById('gameSearch');
-        const games = document.querySelectorAll('.game-card');
-
-        gameSearch.addEventListener('input', () => {
-            const query = gameSearch.value.toLowerCase();
-            games.forEach(game => {
-                game.style.display = game.textContent.toLowerCase().includes(query) ? 'flex' : 'none';
-            });
-        });
-
-        games.forEach(game => {
-            const video = game.querySelector('video');
-            game.addEventListener('mouseenter', () => {
-                video.play();
-                video.currentTime = 0;
-            });
-
-            game.addEventListener('mouseleave', () => {
-                video.pause();
-            });
-        });
 
         let progress = 0;
         const progressBar = document.getElementById('progressBar');
@@ -560,9 +479,108 @@
             win.document.body.appendChild(iframe)
             }
 			</script>
+
+			<!-- Cursor for da cool effect, this file is so fuckin un-organized :( -->
 			<script>
-				alert('New partner! PeteZah Games, check them out here!!: https://petezahgames.com/')
+				let lastTime = 0;
+				const throttleDelay = 10;
+				const crosshair = document.querySelector('.crosshair');
+				let crosshairPosition = { x: 0, y: 0 };
+				let targetPosition = { x: 0, y: 0 };
+				const lerpSpeed = 0.2;
+
+				let cursorSize = 30;
+				let cursorOpacity = 1;
+
+				document.addEventListener('mousemove', function (e) {
+					const currentTime = new Date().getTime();
+					if (currentTime - lastTime >= throttleDelay) {
+						lastTime = currentTime;
+						targetPosition.x = e.clientX + window.scrollX;
+						targetPosition.y = e.clientY + window.scrollY;
+					}
+				});
+
+				function updateCursor() {
+					const deltaX = targetPosition.x - crosshairPosition.x;
+					const deltaY = targetPosition.y - crosshairPosition.y;
+
+					crosshairPosition.x += deltaX * lerpSpeed;
+					crosshairPosition.y += deltaY * lerpSpeed;
+
+					crosshair.style.left = (crosshairPosition.x - cursorSize / 6) + 'px';
+					crosshair.style.top = (crosshairPosition.y - cursorSize / 6) + 'px';
+					crosshair.style.width = cursorSize + 'px';
+					crosshair.style.height = cursorSize + 'px';
+					crosshair.style.opacity = cursorOpacity;
+
+					requestAnimationFrame(updateCursor);
+				}
+
+				updateCursor();
+
+				const buttons = document.querySelectorAll('.game-card');
+
+				buttons.forEach(button => {
+					button.addEventListener('mouseenter', () => {
+						cursorSize = 40;
+						crosshair.style.transition = "width 0.3s, height 0.3s, opacity 0.3s";
+						crosshair.style.left = (crosshairPosition.x - cursorSize / 12) + 'px';
+						crosshair.style.top = (crosshairPosition.y - cursorSize / 12) + 'px';
+					});
+
+					button.addEventListener('mouseleave', () => {
+						cursorSize = 30;
+						cursorOpacity = 1;
+						crosshair.style.transition = "width 0.3s, height 0.3s, opacity 0.3s";
+					}); 
+				});
 			</script>
+			<!-- Particals for even cooler effect -->
+			 <script>
+				const particleContainer = document.getElementById('particle-container');
+
+				function createParticle() {
+					const particle = document.createElement('div');
+					const size = Math.random() * 5 + 2; 
+					const startX = Math.random() * window.innerWidth;
+					const greenShades = ['#24ec24', '#03d803', '#029902', '#02a002', '#4df54d'];
+
+					particle.style.cssText = `
+						position: absolute;
+						bottom: 0;
+						left: ${startX}px;
+						width: ${size}px;
+						height: ${size}px;
+						border-radius: 50%;
+						background-color: ${greenShades[Math.floor(Math.random() * greenShades.length)]};
+						opacity: ${Math.random() * 0.8 + 0.2};
+						animation: moveParticle ${Math.random() * 3 + 2}s linear;
+					`;
+
+					particleContainer.appendChild(particle);
+
+					particle.addEventListener('animationend', () => particle.remove());
+				}
+
+				setInterval(() => {
+					if (document.hidden) return;
+					createParticle();
+				}, 200);
+
+				const style = document.createElement('style');
+				style.textContent = `
+				@keyframes moveParticle {
+					0% {
+						transform: translate(0, 0) rotate(0deg);
+					}
+					100% {
+						transform: translate(calc(-50vw + 100%), calc(-100vh)) rotate(360deg);
+					}
+				}
+				`;
+				document.head.appendChild(style);
+			 </script>
 </body>
 
 </html>
