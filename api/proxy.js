@@ -1,3 +1,23 @@
+const axios = require('axios');
+const express = require('express');
+const path = require('path');
+const RateLimit = require('express-rate-limit');
+const app = express();
+const port = process.env.PORT || 3000;
+
+const limiter = RateLimit({
+    windowMs: 15 * 60 * 1000, 
+    max: 500,
+});
+
+app.use(limiter);
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 app.get('/api/proxy.js', async (req, res) => {
     const { q } = req.query;
 
@@ -16,7 +36,8 @@ app.get('/api/proxy.js', async (req, res) => {
             }
         });
 
-        const contentType = response.headers['content-type'];
+        let contentType = response.headers['content-type'];
+        res.setHeader('Content-Type', contentType);
         res.setHeader('Cache-Control', 'public, max-age=3600');
 
         if (contentType.includes('text/html')) {
@@ -24,29 +45,38 @@ app.get('/api/proxy.js', async (req, res) => {
 
             htmlContent = htmlContent.replace(/(href|src|action)="([^"]*)"/g, (match, attr, url) => {
                 if (url.startsWith('http') || url.startsWith('//')) {
-                    return `${attr}="/api/proxy.js?q=${encodeURIComponent(url)}"`;
+                    return ${attr}="/api/proxy.js?q=${encodeURIComponent(url)}";
                 }
                 return match;
             });
 
             htmlContent = htmlContent.replace(/url\((['"]?)([^'"]+)\1\)/g, (match, quote, url) => {
                 if (url.startsWith('http') || url.startsWith('//')) {
-                    return `url(${quote}/api/proxy.js?q=${encodeURIComponent(url)}${quote})`;
+                    return url(${quote}/api/proxy.js?q=${encodeURIComponent(url)}${quote});
                 }
                 return match;
             });
 
-            res.setHeader('Content-Type', 'text/html');
             res.send(htmlContent);
-        } else if (contentType.includes('image/')) {
-            res.setHeader('Content-Type', contentType);
-            res.end(response.data);
         } else {
-            res.setHeader('Content-Type', contentType);
+            res.writeHead(200, {
+                'Content-Type': contentType,
+                'Content-Length': response.data.length
+            });
             res.end(response.data);
         }
     } catch (error) {
         console.error('Proxy error:', error.message);
         res.status(500).json({ error: 'Error fetching resource', details: error.message });
     }
+});
+
+app.use(express.static('public'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(port, () => {
+    console.log(Proxy server running on http://localhost:${port});
 });
