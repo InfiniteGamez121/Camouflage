@@ -58,6 +58,8 @@ app.get('/api/proxy.js', async (req, res) => {
             });
 
             res.send(htmlContent);
+        } else if (contentType.startsWith('image/')) {
+            res.end(response.data);
         } else {
             res.send(response.data);
         }
