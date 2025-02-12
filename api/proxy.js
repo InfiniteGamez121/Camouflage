@@ -1,4 +1,4 @@
-vconst axios = require('axios');
+const axios = require('axios');
 const express = require('express');
 const path = require('path');
 const RateLimit = require('express-rate-limit');
@@ -45,22 +45,21 @@ app.get('/api/proxy.js', async (req, res) => {
 
             htmlContent = htmlContent.replace(/(href|src|action)="([^"]*)"/g, (match, attr, url) => {
                 if (url.startsWith('http') || url.startsWith('//')) {
-                    return `${attr}="/api/proxy.js?q=${encodeURIComponent(url)}"`;
+                    return ${attr}="/api/proxy.js?q=${encodeURIComponent(url)}";
                 }
                 return match;
             });
 
             htmlContent = htmlContent.replace(/url\((['"]?)([^'"]+)\1\)/g, (match, quote, url) => {
                 if (url.startsWith('http') || url.startsWith('//')) {
-                    return `url(${quote}/api/proxy.js?q=${encodeURIComponent(url)}${quote})`;
+                    return url(${quote}/api/proxy.js?q=${encodeURIComponent(url)}${quote});
                 }
                 return match;
             });
 
             res.send(htmlContent);
         } else {
-            res.setHeader('Content-Length', response.data.length);
-            res.end(response.data);
+            res.send(response.data);
         }
     } catch (error) {
         console.error('Proxy error:', error.message);
@@ -75,5 +74,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Proxy server running on http://localhost:${port}`);
+    console.log(Proxy server running on http://localhost:${port});
 });
