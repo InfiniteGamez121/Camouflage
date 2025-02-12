@@ -1,4 +1,4 @@
-vconst axios = require('axios');
+const axios = require('axios');
 const express = require('express');
 const path = require('path');
 const RateLimit = require('express-rate-limit');
@@ -59,8 +59,11 @@ app.get('/api/proxy.js', async (req, res) => {
 
             res.send(htmlContent);
         } else {
-            res.setHeader('Content-Length', Buffer.byteLength(response.data));
-            res.end(response.data, 'binary');
+            res.writeHead(200, {
+                'Content-Type': contentType,
+                'Content-Length': response.data.length
+            });
+            res.end(response.data);
         }
     } catch (error) {
         console.error('Proxy error:', error.message);
