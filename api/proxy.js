@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 const limiter = RateLimit({
     windowMs: 15 * 60 * 1000, 
-    max: 100,
+    max: 400,
 });
 
 app.use(limiter);
