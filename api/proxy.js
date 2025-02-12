@@ -16,8 +16,7 @@ app.get('/api/proxy.js', async (req, res) => {
             }
         });
 
-        let contentType = response.headers['content-type'];
-        res.setHeader('Content-Type', contentType);
+        const contentType = response.headers['content-type'];
         res.setHeader('Cache-Control', 'public, max-age=3600');
 
         if (contentType.includes('text/html')) {
@@ -37,15 +36,13 @@ app.get('/api/proxy.js', async (req, res) => {
                 return match;
             });
 
+            res.setHeader('Content-Type', 'text/html');
             res.send(htmlContent);
         } else if (contentType.includes('image/')) {
             res.setHeader('Content-Type', contentType);
             res.end(response.data);
         } else {
-            res.writeHead(200, {
-                'Content-Type': contentType,
-                'Content-Length': response.data.length
-            });
+            res.setHeader('Content-Type', contentType);
             res.end(response.data);
         }
     } catch (error) {
