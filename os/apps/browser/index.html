@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OS-Style Browser</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="crosshair" class="crosshair"></div>
+    <div id="particle-container"></div>
     <div class="browser">
         <div class="tabs-container">
             <div class="tabs">
@@ -14,11 +15,15 @@
             </div>
         </div>
         <div class="address-bar">
+            <button>⬅</button>
+            <button>➡</button>
+            <button>↻</button>
             <input type="text" id="url-input" placeholder="Enter a URL">
             <button id="go-button">Go</button>
         </div>
         <div class="views"></div>
     </div>
     <script src="script.js"></script>
+    
 </body>
 </html>
