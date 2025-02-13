@@ -67,24 +67,6 @@ function sanitizeUrl(input) {
     return `/static/iframe.html#${url}`;
 }
 
-function updateTabTitleFavicon(tabId, iframe) {
-    try {
-        const tabButton = document.querySelector(`[data-tab="${tabId}"]`);
-        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        
-        tabButton.textContent = iframeDocument.title || 'New Tab';
-        tabButton.appendChild(tabButton.querySelector('.close-tab'));
-        
-        const faviconLink = iframeDocument.querySelector("link[rel~='icon']");
-        if (faviconLink) {
-            const favicon = document.createElement('img');
-            favicon.src = faviconLink.href;
-            favicon.className = 'tab-favicon';
-            tabButton.prepend(favicon);
-        }
-    } catch (e) {}
-}
-
 function handleSearch() {
     const sanitizedUrl = sanitizeUrl(urlInput.value);
     const activeTab = document.querySelector('.tab-button.active');
