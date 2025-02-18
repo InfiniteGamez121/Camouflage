@@ -1,6 +1,6 @@
 self.__uv$config = {
     prefix: '/static/learn/',
-    bare:'https://bare.benrogo.net',
+    bare:'https://atafu.naveira.tk/bare',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/static/uv/uv.handler.js',
