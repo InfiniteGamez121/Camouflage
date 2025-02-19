@@ -1,5 +1,5 @@
 self.__uv$config = {
-    prefix: '/active/go/',
+    prefix: '/static/go/',
     bare: 'https://ben.edupool.space/bare/',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
