@@ -1,193 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camouflage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            cursor: none;
-        }
-        body, html {
-            height: 100%;
-            background: linear-gradient(to bottom, #1a2b1f, #0d1912);
-            color: white;
-            font-family: 'Open Sans', sans-serif;
-            overflow: hidden;
-        }
-        body::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/army-camouflage.png');
-            opacity: 0.2;
-            z-index: -1;
-        }
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(10, 20, 15, 0.9);
-            padding: 10px 20px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-        }
-        .navbar img {
-            height: 50px;
-        }
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5em;
-            transition: color 0.3s ease;
-        }
-        .navbar a:hover {
-            color: rgba(0, 255, 0, 0.8);
-        }
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            z-index: 99999;
-            opacity: 1;
-            transition: opacity 1s ease-in-out;
-        }
-        .loading-screen.loaded {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .loading-logo img {
-            width: 150px;
-            height: 150px;
-        }
-        .loading-bar {
-            width: 80%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            margin-top: 20px;
-            overflow: hidden;
-        }
-        .loading-progress {
-            height: 100%;
-            width: 0;
-            background: #00ff00;
-            transition: width 0.1s linear;
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto;
-            max-width: 600px;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-            padding: 5px 10px;
-        }
-        .search-input {
-            flex: 1;
-            padding: 10px 15px;
-            font-size: 1.2em;
-            color: #ffffff;
-            background: transparent;
-            border: none;
-            outline: none;
-        }
-        .search-button {
-            background: rgba(0, 255, 0, 0.7);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .search-button:hover {
-            background: rgba(0, 255, 0, 1);
-        }
-        .crosshair {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            pointer-events: none;
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 40%, transparent 60%);
-            background-size: 100% 100%;
-            border: 2px solid rgba(0, 128, 0, 0.8);
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-        }
-    </style>
-</head>
-<body>
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">
-            <img src="/favicon.gif" alt="Loading Logo">
-        </div>
-        <div class="loading-bar">
-            <div class="loading-progress" id="progressBar"></div>
-        </div>
-        <div>Loading...</div>
-    </div>
-    <div class="crosshair"></div>
-    <nav class="navbar">
-        <img src="/favicon.gif" alt="Logo">
-        <ul>
-            <li><a href="/"><i class="fa fa-home"></i></a></li>
-            <li><a href="/static/"><i class="fa fa-search"></i></a></li>
-            <li><a href="/apps.html"><i class="fa fa-th"></i></a></li>
-        </ul>
-    </nav>
-    <form id="uv-form">
-        <div class="search-container">
-            <input id="uv-address" type="text" placeholder="Search Google or type an URL" class="search-input">
-            <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
-        </div>
-    </form>
-    <script>
-        const crosshair = document.querySelector('.crosshair');
-        document.addEventListener('mousemove', (e) => {
-            crosshair.style.left = `${e.clientX}px`;
-            crosshair.style.top = `${e.clientY}px`;
-        });
-        let progress = 0;
-        const progressBar = document.getElementById('progressBar');
-        const loadingScreen = document.getElementById('loadingScreen');
-        function updateProgressBar() {
-            progress += 1;
-            progressBar.style.width = `${progress}%`;
-            if (progress >= 100) {
-                setTimeout(() => loadingScreen.classList.add('loaded'), 500);
-            }
-        }
-        setInterval(updateProgressBar, 25);
-    </script>
-</body>
-</html>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-97C832V55B"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>LupineVault - Free Web Browser - School Safe & 100% Teacher Approved!</title>
+      <!--<link rel="stylesheet" href="../../assets/styles/css/global.min.css">-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+      <link rel="stylesheet" href="index.css">
+      <link rel="icon" type="image/x-icon" href="logo.png">
+      
+      <link rel="shortcut icon" type="image/jpg" href="logo.png"/>
+      
+      <link rel="stylesheet" href="../assets/font-awesome/css/all.css">
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+   </head>
+   <body>
+      
+      
+      <canvas id="canvas"></canvas>
+      <div id="header">
+         <img src="Title.png" alt="Logo" id="bigTitle">
+      </div>
+      <div id="content">
+         
+         <p>An upkept version of <a href="https://github.com/TheTIW/UV-Static">TIW's UV-Static</a></p>
+
+         <form id="uv-form">
+            <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden"/> 
+            <input id="uv-address" type="text" placeholder="Search Google or type an URL" class="form__input"/>
+          </form>
+           <div id="popularSites">
+                <img src="https://img.icons8.com/?size=100&id=T2CwYFr5ouk6&format=png&color=000000" alt="Xbox" onclick="autofill('http://xbox.com/play')">
+                <img src="https://img.icons8.com/?size=100&id=48137&format=png&color=000000" alt="Now.gg" onclick="autofill('https://now.gg/')">
+                <img src="https://img.icons8.com/?size=100&id=48166&format=png&color=000000" alt="Google" onclick="autofill('https://google.com')">
+                <img src="https://img.icons8.com/?size=100&id=92582&format=png&color=000000" alt="GeForce NOW" onclick="autofill('https://play.geforcenow.com/')">
+                <img src="https://img.icons8.com/?size=100&id=KeTtCQ_b-ZiV&format=png&color=000000" alt="TikTok" onclick="autofill('https://tiktok.com')">
+                <img src="https://img.icons8.com/?size=100&id=52539&format=png&color=000000" alt="GitHub" onclick="autofill('https://github.com')">
+                <img src="https://img.icons8.com/?size=100&id=53013&format=png&color=000000" alt="Twitch" onclick="autofill('https://twitch.tv')">
+               <img src="https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000" alt="ChatGPT" onclick="autofill('https://chatgpt.com')">
+            </div>
+            <a href="https://discord.gg/Dybpe2uWfZ" target="_blank" class="fa-brands fa-discord"></a>
+            <a href="https://github.com/tf7software/UV-Static" target="_blank"class="fa-brands fa-github"></a>
+            <a href="https://lupinevault.com/TIW/" target="_blank"class="fa-solid fa-cloud"></a>
+          <div class="desc left-margin">
+            <p id="uv-error"></p>
+            <pre id="uv-error-code"></pre>
+          </div>
         
-          gtag('config', 'G-97C832V55B');
-        </script>
+      </div>
+      <script src="stars.js"></script>
+      
+      <script src="uv/uv.bundle.js" charset="UTF-8" defer></script>
+      <script src="uv/uv.config.js" charset="UTF-8" defer></script>
+      <script src="register-sw.js" charset="UTF-8" defer></script>
+      <script src="search.js" charset="UTF-8" defer></script>
+      <script src="index.js" charset="UTF-8" defer></script>
+      <div id="footer">
+         <footer>© tf7software, <a href="https://rhw.one/">rhw.one</a> - <a href="https://lupinevault.com/privacy-policy.html">Privacy Policy</a> - By Using LV/UV Static Proxy You Agree To Our <a href="https://lupinevault.com/tos.html">Terms of Service</a></footer>
+      </div>
+   </body>
+</html>
