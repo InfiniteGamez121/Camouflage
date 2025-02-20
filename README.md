@@ -1,5 +1,3 @@
 # Camouflage
-## Background
-https://www.freepik.com
-<br>
-*the background was from freepick 🔥*
+## Made by Camouflage Network
+*https://dsc.gg/camouflage*
