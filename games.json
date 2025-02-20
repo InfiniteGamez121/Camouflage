@@ -68,36 +68,6 @@
         "name": "Basketball Stars",
         "url": "/games/basketball-stars/",
         "image": "https://basketball-stars.io/upload/cache/upload/imgs/basketball-stars1-m240x240.jpg"
-    },
-    {
-        "name": "Gunspin",
-        "url": "/static/iframe.html#https://ubg44.github.io/GunSpin/",
-        "image": "https://play-lh.googleusercontent.com/fLqvWSVq5rENEvu32xl0hf96wwSHVwQm-_9xc6KZg9Vgv9PbAtf1CyBYW7i1mlAXoSA"
-    },
-    {
-        "name": "Cartoon Mini Racing",
-        "url": "/static/iframe.html#https://ubg44.github.io/CartoonMiniRacing/",
-        "image": "https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=1200,height=1200,fit=cover,f=png/fcddaf3e-941f-4dcd-9a61-ebbcac2f8fb4.png"
-    },
-    {
-        "name": "Moon City Stunt",
-        "url": "/static/iframe.html#https://ubg44.github.io/MoonCityStunt/",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGp-mNQbOySm1Ptkxaj1I8vY2sN0XT0sWxPFgiFIEN5BCB9d7nR6G1Ghrrzxz-B89NxhA&usqp=CAU"
-    },
-    {
-        "name": "Bob The Robber 4",
-        "url": "/static/iframe.html#https://ubg44.github.io/BobTheRobber4/",
-        "image": "https://play-lh.googleusercontent.com/Xn94oteWzKwbw_SzGVRjYKyuuY2E6Kd2A9YNm4MPXUBLz5QZxNWNrxNPGQo6iEpePNU"
-    },
-    {
-        "name": "Sling Drift",
-        "url": "/static/iframe.html#https://ubg44.github.io/SlingDrift/",
-        "image": "https://scratchgames.co/cache/data/image/game/Sling%20Drift-m140x140.webp"
-    },
-    {
-        "name": "Glitch Dash",
-        "url": "/static/iframe.html#https://ubg44.github.io/GlitchDash/",
-        "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple123/v4/3f/bd/d1/3fbdd124-4e0b-1af2-8749-f5c6ae1bcc6d/pr_source.png/643x0w.jpg"
     }
     
 ]
