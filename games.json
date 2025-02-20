@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Retrobowl",
+        "url": "/games/retro-bowl",
+        "image": "https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/ee9ca3764ef4289a48a1ebf457ef605441ed1f35a0f2eb12707a70d609e53686.png"
+    },
+    {
+        "name": "Eaglercraft",
+        "url": "/static/iframe.html#https://eaglercraft.com/mc/1.8.8",
+        "image": "https://avatars.githubusercontent.com/u/136807160?s=200&v=4"
+    },
+    {
+        "name": "1v1.lol",
+        "url": "/games/1v1lol",
+        "image": "https://img.utdstc.com/icon/983/22a/98322a3b2be892eed31589906ffd949b68bcccc9a21ba562987965b5ec6bc6de:200"
+    },
+    {
+        "name": "Google Feud",
+        "url": "/games/google-feud",
+        "image": "https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/ce72bcf0-3b49-471d-b38d-8d99287c7d8e.png"
+    },
+    {
+        "name": "Tiny Fishing",
+        "url": "/tiny-fishing",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDDB0Astl-IVntWlptdQVMvZTnxlFzUDvvP9vx7dSjSWSVl25p0uIhJxzLX06lC8BpMQ8&usqp=CAU"
+    },
+    {
+        "name": "Bad Monday Sim",
+        "url": "/static/iframe.html#https://lumpytouch.itch.io/bad-monday-simulator",
+        "image": "https://i1.sndcdn.com/artworks-pnPXG7LIvBWD6JHV-TAhYAA-t500x500.jpg"
+    },
+    {
+        "name": "Slope",
+        "url": "",
+        "image": "https://soccer-random.github.io/img/slope.png"
+    },
+    {
+        "name": "Slope 2",
+        "url": "",
+        "image": "https://htmlxm.github.io/thumb/slope-2.png"
+    },
+    {
+        "name": "Coreball",
+        "url": "/games/core-ball",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkFo8Ww72DqC7SYfkhgE_DNrhgNOr7PCtgRA&s"
+    },
+    {
+        "name": "Bitlife",
+        "url": "/games/bitlife",
+        "image": "https://d.newsweek.com/en/full/1317374/bitlife-ribbons-how-get-all-complete-list-android-ios-cheats-guide-tips-become.jpg?w=1600&h=1600&q=88&f=75befc746fb83a0c568c44ca07bc5e64"
+    },
+    {
+        "name": "Geometry Dash",
+        "url": "/games/geo-dash",
+        "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzvVLR52MO9FzD9EAl6Krn7mhIoVywabxOjbEEzHd9cQOVZFz18VixeCshCb0fz4P2NqohQ4UY-_-04_DAqwxApYDfmERQp_S9xNqyCUo"
+    }
+]

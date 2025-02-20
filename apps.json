@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Google",
+        "url": "/static/iframe.html#https://google.com",
+        "image": "https://static-00.iconduck.com/assets.00/google-icon-512x512-yk2xx8br.png"
+    },
+    {
+        "name": "DuckDuckGo",
+        "url": "/static/iframe.html#https://duckduckgo.com",
+        "image": "https://static-00.iconduck.com/assets.00/duckduckgo-icon-1024x1024-c7ej6qw3.png"
+    },
+    {
+        "name": "Vscode",
+        "url": "/static/iframe.html#https://vscode.dev",
+        "image": "https://img.utdstc.com/icon/983/22a/98322a3b2be892eed31589906ffd949b68bcccc9a21ba562987965b5ec6bc6de:200"
+    }
+]

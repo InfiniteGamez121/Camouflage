@@ -1,542 +1,71 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camouflage</title>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            margin: 0;
-            padding: 0;
-	background: url('bg.jpg');
-            color: white;
-            font-family: Arial, sans-serif;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-	    background: url('bg.jpg');
-            color: white;
-            font-family: Arial, sans-serif;
-            height: 100%;
-            overflow: hidden;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-position: center;
-            background-size: 100%;
-        }
-
-
-        .sidebar {
-	backdrop-filter: blur(2vh);
-	width: 200px;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
-	position: fixed;
-	top: 0;
-	box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
-	transition: left 0.4s ease;
-	}
-	
-	.sidebar.show {
-	left: 0;
-	}
-	
-	.sidebar .logo {
-	margin: 20px 0;
-	text-align: center;
-	width: 100%;
-	}
-	
-	.sidebar .logo img {
-	width: 50px;
-	height: 50px;
-	}
-	
-	.sidebar .logo h1 {
-	font-size: 1.5em;
-	color: white;
-	margin-top: 10px;
-	opacity: 0;
-	animation: fadeIn 0.8s forwards;
-	}
-	
-	.sidebar ul {
-	list-style: none;
-	padding: 0;
-	width: 100%;
-	}
-	
-	.sidebar ul li {
-	width: 100%;
-	}
-	
-	.sidebar ul li a {
-	display: flex;
-	align-items: center;
-	padding: 15px;
-	text-decoration: none;
-	color: #d1d1e0;
-	font-size: 1.1em;
-	transition: background 0.3s ease, color 0.3s ease;
-	border-radius: 0.2rem;
-	}
-	
-	.sidebar ul li a:hover {
-	background: rgba(79, 255, 79, 0.7);
-	color: white;
-	}
-        .toggle-btn {
-	    display: none;
-            position: absolute;
-            top: 15px;
-            margin-left: 15px;
-            margin-right: 15px;
-            padding: 10px 20px;
-            background: #267b2a;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            z-index: 1000;
-            transition: background 0.3s ease;
-        }
-
-        .toggle-btn:hover {
-            background: #3ac041;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .games-section {
-            margin: 20px auto;
-            width: 80%;
-            display: flex;
-            flex-direction: row;
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .search-bar input {
-            width: 60%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 2px solid rgba(0, 128, 0, 0.8);
-            font-size: 1em;
-            background: rgba(10, 20, 15, 0.9);
-            color: white;
-        }
-
-        .games-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .game-card {
-            width: 150px;
-            height: 150px;
-            background: rgba(0, 128, 0, 0.6);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: transparent;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s ease;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .game-card:hover {
-            background: rgba(127, 134, 127, 0.81);
-	        color: rgb(145, 247, 94);
-        }
-
-        .game-card img,
-        .game-card video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s ease;
-        }
-
-        .game-card video {
-            filter: brightness(0.5);
-            visibility: hidden;
-        }
-
-        .game-card:hover video {
-            visibility: visible; 
-            filter: brightness(1); 
-        }
-
-        .game-card:hover img {
-            filter: brightness(0.5); 
-        }
-
-        .game-card .game-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.2em;
-            color: rgb(255, 255, 255);
-            opacity: 0\=;
-            transition: opacity 0.3s ease;
-        }
-
-        .game-card:hover .game-text {
-            opacity: 1; 
-        }
-
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 1); 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            z-index: 99999;
-            opacity: 1;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .loading-screen.loaded {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-logo {
-            margin-bottom: 20px;
-        }
-
-        .loading-logo img {
-            width: 150px;
-            height: 150px;
-        }
-
-        .loading-bar {
-            width: 80%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .loading-progress {
-            height: 100%;
-            width: 0;
-            background: #00ff00;
-            transition: width 0.1s linear;
-        }
-        #particle-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-.crosshair {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    pointer-events: none;
-    background: none;
-    border: 4px solid rgba(8, 242, 8, 0.8);
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-	}	
-    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<div id="particle-container"></div>
-<body id="body">
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">
-        </div>
-        <div class="loading-bar">
-            <div class="loading-progress" id="progressBar"></div>
-        </div>
-        <div>Loading...</div>
-    </div>
-
-    <div id="crosshair" class="crosshair"></div>
-    <button class="toggle-btn"><i class="fa fa-bars"></i></button>
-        <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <h1>Camouflage</h1>
-        </div>
+<body>
+    <div class="navbar">
         <ul>
-            <li><a href="/"><i class="fa fa-home"></i><span>Home</span></a></li>
-            <li><a href="/apps.html"><i class="material-icons">apps</i><span>Apps</span></a></li>
-            <li><a href="/games/"><i class="fa fa-gamepad"></i><span>Games</span></a></li>
+          <li onclick="window.location.href = 'index.html'"><i class='fa fa-home'></i></li>
+          <li onclick="window.location.href = 'science.html'"><i class="fa fa-search"></i></li>
+          <li onclick="window.location.href = 'apps.html'"><i class="material-icons">apps</i></li>
         </ul>
-    </div>
-
-    <div class="games-section">
-
-        <div class="games-container" id="games">
-                <div onclick="gameshow('https://google.com')" class="game-card">
-                    <img src="./img/google.png" alt="Game 5">
-                    <div class="game-text">Google</div>
+      </div>
+    <div id="particle-container"></div>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+    <div class="main">
+        <div class="main-1">
+            <div class="typewriter">
+                <h1>
+                    Welcome to
+                </h1>
+                <h1 id="span">
+                    Camouflage
+                </h1>
+            </div>
+        </div>
+        <div class="main-2">
+            <div class="button-container">
+                <div class="button-width">
+                    <button onclick="window.location.href = '#game-grid'">
+                        Play
+                    </button>
                 </div>
-                <div onclick="gameshow('https://duckduckgo.com')" class="game-card">
-                    <img src="./img/duckduckgo.png" alt="Game 6">
-                    <div class="game-text">DuckDuckGo</div>
-                </div>
-                <div onclick="gameshow('https://discord.com')" class="game-card">
-                    <img src="./img/discord.png" alt="Game 7">
-                    <div class="game-text">Discord</div>
-                </div>
-                <div onclick="gameshow('https://github.com')" class="game-card">
-                    <img style="background-color: white;" src="./img/github.png" alt="Game 8">
-                    <div class="game-text">Github</div>
-                </div>
-                <div onclick="gameshow('https://scratch.mit.edu')" class="game-card">
-                    <img style="background-color: white;" src="https://plainfieldnj.librarycalendar.com/sites/default/files/2024-06/scratch-coding.jpg" alt="Game 9">
-                    <div class="game-text">Scratch</div>
-                </div>
-                <div onclick="gameshow('https://vscode.dev')" class="game-card">
-                    <img style="background-color: white;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/512px-Visual_Studio_Code_1.35_icon.svg.png" alt="Game 10">
-                    <div class="game-text">VsCode</div>
-                </div>
-                <div onclick="gameshow('https://ext-remover.net')" class="game-card">
-                    <img style="background-color: white;" src="https://user-images.githubusercontent.com/58097612/191354621-bf7ff072-b9d7-46b5-994a-4d2adbf0e4f3.png" alt="Game 11">
-                    <div class="game-text">ExtRemover</div>
-                </div>
-                <div onclick="gameshow('https://github.com')" class="game-card">
-                    <img style="background-color: white;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF1HctiRAMzzzwozHLo0YxPfZF1vQrjvcWeg&s" alt="Game 8">
-                    <div class="game-text">Github</div>
-                </div>
-                <div onclick="gameshow('https://bing.com')" class="game-card">
-                    <img style="background-color: white;" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Bing_Logo.svg" alt="Game 8">
-                    <div class="game-text">Bing</div>
-                </div>
-                <div onclick="gameshow('https://youtube.com')" class="game-card">
-                    <img style="background-color: white;" src="https://i.pinimg.com/736x/e3/e3/48/e3e3480c7752cebc014ece611369876b.jpg" alt="Game 8">
-                    <div class="game-text">youtube</div>
-                </div>
-                <div onclick="gameshow('https://tiktok.com')" class="game-card">
-                    <img style="background-color: white;" src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ionicons_logo-tiktok.svg" alt="Game 12">
-                    <div class="game-text">TikTok</div>
-                </div>
-                <div onclick="gameshow('https://thelifeengine.net/')" class="game-card">
-                    <img style="background-color: white;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJSKukWcwjQw9I9n5NO7DpNt8PumVuudMe8Q&s" alt="Game 13">
-                    <div class="game-text">The Life Engine</div>
-                </div>
-                <div onclick="gameshow('https://thirtydollar.website/')" class="game-card">
-                    <img style="background-color: white;" src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Noto_Emoji_Pie_1f5ff.svg" alt="Game 13">
-                    <div class="game-text">30 dollar website</div>
-                </div>
-                <div onclick="gameshow('https://www.coolmathgames.com/')" class="game-card">
-                    <img style="background-color: white;" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Coolmath_Games_logo.svg" alt="Game 13">
-                    <div class="game-text">Cool Math Games</div>
-                </div>
-                <div onclick="gameshow('https://eaglercraft.com/mc/1.8.8/')" class="game-card">
-                    <img style="background-color: white;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlgIHBZpO8YZakIiFK2oc3WdKJTatYPsE2Ig&s" alt="Game 13">
-                    <div class="game-text">Minecraft</div>
-                </div>
-                <div onclick="gameshow('https://venmo.com')" class="game-card">
-                    <img style="background-color: white;" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTAEdO5FHeWFfFSRhB6edQwdnDHP30rsSdg5ztk0347GOlXL4MGUfkS5NUIe62ftFqjeR1SQ8TYytt__QF59hvXPo4W4p5Gl0a9xiVxcA" alt="Game 8">
-                    <div class="game-text">Venmo</div>
-                </div>
-                <div onclick="gameshow('https://netflix.com')" class="game-card">
-                    <img style="background-color: white;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcGP-hZph0fqAx3g4Soh1JbF7RfuZzITm0nu0M8yM&usqp=CAE&s" alt="Game 8">
-                    <div class="game-text">Netflix</div>
-                </div>
-                <div onclick="gameshow('https://wordpress.com')" class="game-card">
-                    <img style="background-color: white;" src="https://s.w.org/style/images/about/WordPress-logotype-wmark.png" alt="Game 12">
-                    <div class="game-text">WordPress</div>
-                </div>
-                <div onclick="gameshow('https://hostinger.com)" class="game-card">
-                    <img style="background-color: white;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW2tekZ3saj0otmzVSl0UuDlCKzvsP42FW9Q&s" alt="Game 13">
-                    <div class="game-text">Hostinger</div>
-                </div>
+            </div>
         </div>
     </div>
-
+    <section class="game-grid" id="game-grid">
     <script>
-        let progress = 0;
-        const progressBar = document.getElementById('progressBar');
-        const loadingScreen = document.getElementById('loadingScreen');
-        
-        function updateProgressBar() {
-            progress += 1;
-            progressBar.style.width = progress + '%';
-            
-            if (progress >= 100) {
-                setTimeout(() => {
-                    loadingScreen.classList.add('loaded');
-                }, 1000);
-            }
+        fetch('apps.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
         }
-
-        setInterval(updateProgressBar, 50);
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loadingScreen.classList.add('loaded');
-            }, 2000); 
+        return response.json();
+    })
+    .then(games => {
+        const gameGrid = document.getElementById('game-grid');
+        games.forEach(game => {
+            const gameCard = document.createElement('div');
+            gameCard.classList.add('game-card');
+            gameCard.onclick = () => window.location.href = game.url;
+            gameCard.innerHTML = `
+                <img src="${game.image}" alt="${game.name}">
+                <h2>${game.name}</h2>
+            `;
+            gameGrid.appendChild(gameCard);
         });
-        function gameshow(url) {
-            window.location.href = "/static/iframe.html#" + url;
-        }
+    })
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-97C832V55B"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-97C832V55B');
-
-          const toggleBtn = document.querySelector('.toggle-btn');
-        const sidebar = document.querySelector('.sidebar');
-
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('show');
-        });
-        </script>
-        <!-- Cursor for da cool effect, this file is so fuckin un-organized :( -->
-			<script>
-				let lastTime = 0;
-				const throttleDelay = 10;
-				const crosshair = document.querySelector('.crosshair');
-				let crosshairPosition = { x: 0, y: 0 };
-				let targetPosition = { x: 0, y: 0 };
-				const lerpSpeed = 0.2;
-
-				let cursorSize = 30;
-				let cursorOpacity = 1;
-
-				document.addEventListener('mousemove', function (e) {
-					const currentTime = new Date().getTime();
-					if (currentTime - lastTime >= throttleDelay) {
-						lastTime = currentTime;
-						targetPosition.x = e.clientX + window.scrollX;
-						targetPosition.y = e.clientY + window.scrollY;
-					}
-				});
-
-				function updateCursor() {
-					const deltaX = targetPosition.x - crosshairPosition.x;
-					const deltaY = targetPosition.y - crosshairPosition.y;
-
-					crosshairPosition.x += deltaX * lerpSpeed;
-					crosshairPosition.y += deltaY * lerpSpeed;
-
-					crosshair.style.left = (crosshairPosition.x - cursorSize / 6) + 'px';
-					crosshair.style.top = (crosshairPosition.y - cursorSize / 6) + 'px';
-					crosshair.style.width = cursorSize + 'px';
-					crosshair.style.height = cursorSize + 'px';
-					crosshair.style.opacity = cursorOpacity;
-
-					requestAnimationFrame(updateCursor);
-				}
-
-				updateCursor();
-
-				const buttons = document.querySelectorAll('.game-card');
-
-				buttons.forEach(button => {
-					button.addEventListener('mouseenter', () => {
-						cursorSize = 40;
-						crosshair.style.transition = "width 0.3s, height 0.3s, opacity 0.3s";
-						crosshair.style.left = (crosshairPosition.x - cursorSize / 12) + 'px';
-						crosshair.style.top = (crosshairPosition.y - cursorSize / 12) + 'px';
-					});
-
-					button.addEventListener('mouseleave', () => {
-						cursorSize = 30;
-						cursorOpacity = 1;
-						crosshair.style.transition = "width 0.3s, height 0.3s, opacity 0.3s";
-					}); 
-				});
-			</script>
-			<!-- Particals for even cooler effect -->
-			 <script>
-				const particleContainer = document.getElementById('particle-container');
-
-				function createParticle() {
-					const particle = document.createElement('div');
-					const size = Math.random() * 5 + 2; 
-					const startX = Math.random() * window.innerWidth;
-					const greenShades = ['#24ec24', '#03d803', '#029902', '#02a002', '#4df54d'];
-
-					particle.style.cssText = `
-						position: absolute;
-						bottom: 0;
-						left: ${startX}px;
-						width: ${size}px;
-						height: ${size}px;
-						border-radius: 50%;
-						background-color: ${greenShades[Math.floor(Math.random() * greenShades.length)]};
-						opacity: ${Math.random() * 0.8 + 0.2};
-						animation: moveParticle ${Math.random() * 3 + 2}s linear;
-					`;
-
-					particleContainer.appendChild(particle);
-
-					particle.addEventListener('animationend', () => particle.remove());
-				}
-
-				setInterval(() => {
-					if (document.hidden) return;
-					createParticle();
-				}, 200);
-
-				const style = document.createElement('style');
-				style.textContent = `
-				@keyframes moveParticle {
-					0% {
-						transform: translate(0, 0) rotate(0deg);
-					}
-					100% {
-						transform: translate(calc(-50vw + 100%), calc(-100vh)) rotate(360deg);
-					}
-				}
-				`;
-				document.head.appendChild(style);
-			 </script>
+    </section>
 </body>
 </html>
+<script src="scripts.js"></script>
