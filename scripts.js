@@ -62,7 +62,7 @@ const cursor = document.querySelector('.custom-cursor');
                 if (!url.startsWith('https://')) {
                     url = 'https://' + url;
                 }
-                window.location.href = `/static/iframe.html#${encodeURIComponent(url)}`;
+                window.location.href = `/static/iframe.html#` + url;
             }
         });
         
