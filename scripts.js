@@ -65,4 +65,7 @@ const cursor = document.querySelector('.custom-cursor');
                 window.location.href = `/static/iframe.html#` + url;
             }
         });
-        
+        if ('serviceWorker' in navigator) {
+	    navigator.serviceWorker.register('/service-worker.js');
+	}
+
