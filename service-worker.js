@@ -1,6 +1,7 @@
 const CACHE_NAME = 'offline-cache-v7';
 const OFFLINE_URL = '/offline.html';
 
+// Function to extract all resources from the homepage
 async function getAllAssets() {
     try {
         const response = await fetch('/');
@@ -15,6 +16,7 @@ async function getAllAssets() {
     }
 }
 
+// Install event - Cache everything on first load
 self.addEventListener('install', event => {
     event.waitUntil(
         (async () => {
@@ -25,7 +27,9 @@ self.addEventListener('install', event => {
     );
 });
 
+// Fetch event - Serve from cache or fetch & store in cache
 self.addEventListener('fetch', event => {
+    if (event.request.url.includes('/static/')) return; // Exclude static assets
     event.respondWith(
         caches.match(event.request).then(response => {
             return response || fetch(event.request).then(networkResponse => {
@@ -38,6 +42,7 @@ self.addEventListener('fetch', event => {
     );
 });
 
+// Activate event - Clean up old caches
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(keys => {
