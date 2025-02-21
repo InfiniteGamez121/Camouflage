@@ -1,15 +1,15 @@
-const CACHE_NAME = 'offline-cache-v5';
+const CACHE_NAME = 'offline-cache-v7';
 const OFFLINE_URL = '/offline.html';
 
-async function getAllPagesAndAssets() {
+async function getAllAssets() {
     try {
         const response = await fetch('/');
         const text = await response.text();
-        const links = [...new Set(text.match(/(href|src)="([^"]+)"/g))]
+        const assetUrls = [...new Set(text.match(/(href|src)="([^"]+)"/g))]
             .map(l => l.replace(/(href|src)="|"$/g, ''))
             .filter(link => !link.startsWith('http') || link.startsWith(location.origin))
             .map(link => new URL(link, location.origin).href);
-        return [...links, OFFLINE_URL];
+        return [...assetUrls, OFFLINE_URL];
     } catch (err) {
         return [OFFLINE_URL];
     }
@@ -19,8 +19,8 @@ self.addEventListener('install', event => {
     event.waitUntil(
         (async () => {
             const cache = await caches.open(CACHE_NAME);
-            const pagesAndAssets = await getAllPagesAndAssets();
-            await cache.addAll(pagesAndAssets);
+            const assets = await getAllAssets();
+            await cache.addAll(assets);
         })()
     );
 });
