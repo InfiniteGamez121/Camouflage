@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camouflage</title>
+    <title>MyProxy | Apps</title>
+    <link rel="shortcut icon" href="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -14,8 +15,8 @@
             background-color: #222; /* Dark theme background */
         }
 
-        /* Navbar Styles */
-        .navbar {
+        /* Sidebar Styles */
+        .sidebar {
             position: fixed;
             left: 0;
             top: 0;
@@ -30,16 +31,7 @@
             z-index: 999;
         }
 
-        .navbar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .navbar ul li {
+        .sidebar .navbar-link {
             color: white;
             padding: 1.5rem 0; /* Increased padding */
             font-size: 1.8rem; /* Increased font size */
@@ -48,15 +40,16 @@
             flex-direction: column;
             align-items: center;
             margin-bottom: 1.5rem; /* Increased space between the icons */
-            cursor: pointer;
+            text-decoration: none;
         }
 
-        .navbar ul li:hover {
+        .sidebar .navbar-link:hover {
             background-color: #ff6347;
         }
 
-        .navbar ul li i {
-            font-size: 2rem; /* Increased icon size */
+        .sidebar .navbar-link img {
+            width: 50px; /* Increased icon size */
+            height: 50px; /* Increased icon size */
         }
 
         /* Main Content Styles */
@@ -73,9 +66,8 @@
         }
 
         .typewriter h1 {
-            color: #fff;
-            font-size: 4rem; /* Increased font size */
-            font-weight: 600;
+            font-size: 6rem; /* Increased font size */
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 2rem; /* Increased margin */
@@ -85,6 +77,11 @@
         .typewriter h1#span {
             color: gray;
             text-shadow: 3px 3px 5px white; /* White outline effect */
+        }
+
+        .typewriter h1#span-white {
+            color: white;
+            padding-left: 1rem;
         }
 
         .main-2 {
@@ -164,25 +161,35 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <ul>
-          <li onclick="window.location.href = 'index.html'"><i class='fa fa-home'></i></li>
-          <li onclick="window.location.href = 'science.html'"><i class="fa fa-search"></i></li>
-          <li onclick="window.location.href = 'apps.html'"><i class="material-icons">apps</i></li>
-        </ul>
-      </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- MyProxy Icon -->
+        <a href="/./" class="navbar-link">
+            <img src="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927" alt="MyProxy Icon">
+        </a>
+        <!-- Games Icon -->
+        <a class="navbar-link" href="/./events">
+            <img src="https://static-00.iconduck.com/assets.00/game-controller-outline-icon-512x375-hjactmfq.png" alt="Games Icon">
+        </a>
+        <!-- Apps Icon -->
+        <a class="navbar-link" href="/./news">
+            <img src="https://cdn-icons-png.flaticon.com/512/35/35823.png" alt="Apps Icon">
+        </a>
+        <!-- Settings Icon -->
+        <a class="navbar-link" href="/./diagnostic">
+            <img src="https://cdn-icons-png.flaticon.com/512/44/44724.png" alt="Settings Icon">
+        </a>
+    </div>
+
+    <!-- Particle Background -->
     <div id="particle-container"></div>
-    <div class="custom-cursor"></div>
-    <div class="custom-cursor-dot"></div>
+
+    <!-- Main Content -->
     <div class="main">
         <div class="main-1">
             <div class="typewriter">
-                <h1>
-                    Welcome to
-                </h1>
-                <h1 id="span">
-                    Camouflage
-                </h1>
+                <h1 id="span">MyProxy</h1>
+                <h1 id="span-white">| Apps</h1>
             </div>
         </div>
         <div class="main-2">
@@ -195,31 +202,106 @@
             </div>
         </div>
     </div>
+
+    <!-- Game Grid Section -->
     <section class="game-grid" id="game-grid">
-    <script>
-        fetch('apps.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(games => {
-        const gameGrid = document.getElementById('game-grid');
-        games.forEach(game => {
-            const gameCard = document.createElement('div');
-            gameCard.classList.add('game-card');
-            gameCard.onclick = () => window.location.href = game.url;
-            gameCard.innerHTML = `
-                <img src="${game.image}" alt="${game.name}">
-                <h2>${game.name}</h2>
-            `;
-            gameGrid.appendChild(gameCard);
-        });
-    })
-    .catch(error => console.error('There was a problem with the fetch operation:', error));
-    </script>
+        <script>
+            fetch('apps.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(games => {
+                    const gameGrid = document.getElementById('game-grid');
+                    games.forEach(game => {
+                        const gameCard = document.createElement('div');
+                        gameCard.classList.add('game-card');
+                        gameCard.onclick = () => window.location.href = game.url;
+                        gameCard.innerHTML = `
+                            <img src="${game.image}" alt="${game.name}">
+                            <h2>${game.name}</h2>
+                        `;
+                        gameGrid.appendChild(gameCard);
+                    });
+                })
+                .catch(error => console.error('There was a problem with the fetch operation:', error));
+        </script>
     </section>
+
+    <!-- Particle Effect Script -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particle-container", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#aaa"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 4,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 8,
+                    "direction": "random",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
 </html>
 <script src="scripts.js"></script>
