@@ -8,7 +8,9 @@
         "name": "DuckDuckGo",
         "url": "/static/iframe.html#https://duckduckgo.com",
         "image": "https://static-00.iconduck.com/assets.00/duckduckgo-icon-1024x1024-c7ej6qw3.png"
-
+    },
+    {
+        "name": "Vscode",
         "url": "/static/iframe.html#https://vscode.dev",
         "image": "https://code.visualstudio.com/assets/branding/app-icon.png"
     }
