@@ -94,25 +94,27 @@
             margin-top: 3rem; /* Increased margin */
         }
 
-        .button-container {
+        .search-container {
             display: flex;
             justify-content: center;
+            width: 100%;
         }
 
-        .button-width button {
+        #search-bar {
             padding: 1.5rem; /* Increased padding */
-            width: 20vh; /* Increased width */
-            background: #444;
+            width: 50vh; /* Increased width */
+            border-radius: 30px; /* Slightly more rounded corners */
+            background: #444; /* Darker gray color */
             color: white;
             border: none;
-            border-radius: 30px; /* Slightly more rounded corners */
+            outline: none;
             font-size: 1.5rem; /* Increased font size */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            text-align: center;
+            transition: width 0.4s ease-in-out;
         }
 
-        .button-width button:hover {
-            background: #ff6347;
+        #search-bar:focus {
+            width: 70vh; /* Increased focus width */
         }
 
         /* Game Grid Styles */
@@ -199,42 +201,61 @@
             </div>
         </div>
         <div class="main-2">
-            <div class="button-container">
-                <div class="button-width">
-                    <button onclick="window.location.href = '#game-grid'">
-                        Play
-                    </button>
-                </div>
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search a game">
             </div>
         </div>
     </div>
 
     <!-- Game Grid Section -->
-    <section class="game-grid" id="game-grid">
-        <script>
-            fetch('apps.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(games => {
-                    const gameGrid = document.getElementById('game-grid');
-                    games.forEach(game => {
-                        const gameCard = document.createElement('div');
-                        gameCard.classList.add('game-card');
-                        gameCard.onclick = () => window.location.href = game.url;
-                        gameCard.innerHTML = `
-                            <img src="${game.image}" alt="${game.name}">
-                            <h2>${game.name}</h2>
-                        `;
-                        gameGrid.appendChild(gameCard);
-                    });
-                })
-                .catch(error => console.error('There was a problem with the fetch operation:', error));
-        </script>
-    </section>
+    <section class="game-grid" id="game-grid"></section>
+
+    <!-- Scripts -->
+    <script>
+        // Fetch apps.json and display apps
+        let games = [];
+
+        fetch('apps.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                games = data;
+                displayGames(games); // Display all games initially
+            })
+            .catch(error => console.error('There was a problem with the fetch operation:', error));
+
+        // Function to display games
+        function displayGames(games) {
+            const gameGrid = document.getElementById('game-grid');
+            gameGrid.innerHTML = ''; // Clear existing content
+
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.classList.add('game-card');
+                gameCard.onclick = () => window.location.href = game.url;
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.name}">
+                    <h2>${game.name}</h2>
+                `;
+                gameGrid.appendChild(gameCard);
+            });
+        }
+
+        // Search functionality
+        const searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredGames = games.filter(game => 
+                game.name.toLowerCase().includes(searchTerm) || 
+                game.name.toLowerCase().startsWith(searchTerm)
+            );
+            displayGames(filteredGames); // Update displayed games
+        });
+    </script>
 
     <!-- Particle Effect Script -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
