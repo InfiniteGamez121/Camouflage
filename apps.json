@@ -1,194 +1,194 @@
 [
-      {
-        name: "Amazon",
-        link: "https://amazon.com/",
-        image: "/images/icons/apps/amazon.png"
-      },
-      {
-        name: "BuzzFeed Quizzes",
-        link: "https://buzzfeed.com/quizzes",
-        image: "/images/icons/apps/buzzfeed.png"
-      },
-      {
-        name: "Movie Web",
-        link: "https://movie-web.app",
-        image: "https://movie-web.app/apple-touch-icon.png"
-      },
-      {
-        name: "Scratch",
-        link: "https://scratch.mit.edu",
-        image: "/images/icons/scratch.jpg"
-      },
-      {
-        name: "Chess.com",
-        link: "https://chess.com",
-        image: "/images/icons/chess.png"
-      },
-      {
-        name: "Cool Math Games",
-        link: "https://coolmathgames.com",
-        image: "/images/icons/apps/coolmath.png"
-      },
-      {
-        name: "Discord",
-        link: "https://canary.discord.com",
-        image: "/images/icons/apps/discord.jpg"
-      },
-      {
-        name: "DuckDuckGo",
-        link: "https://start.duckduckgo.com/",
-        image: "/images/icons/apps/duckduckgo.png"
-      },
-      {
-        name: "ESPN",
-        link: "https://www.espn.com/watch/",
-        image: "/images/icons/apps/espn.webp"
-      },
-      {
-        name: "Fifa Rosters",
-        link: "https://fifarosters.com/",
-        image: "/images/icons/fifa.png"
-      },
-      {
-        name: "Firefox Web Browser",
-        link: "https://replit.com/@cooleddie001/Firefox-Legacy?v=1",
-        image: "/images/icons/apps/firefox.png"
-      },
-      {
-        name: "Flix HQ",
-        link: "https://flixhq.to",
-        image: "/images/icons/apps/flixhq.png"
-      },
-      {
-        name: "Geforce NOW",
-        link: "https://play.geforcenow.com",
-        image: "/images/icons/apps/geforce-now.png"
-      },
-      {
-        name: "Github",
-        link: "https://github.com",
-        image: "/images/icons/apps/github.png"
-      },
-      {
-        name: "Google",
-        link: "https://google.com",
-        image: "/images/icons/apps/google.png"
-      },
-      {
-        name: "HBO MAX",
-        link: "https://www.hbomax.com/",
-        image: "/images/icons/apps/hbo.webp"
-      },
-      {
-        name: "Messenger",
-        link: "https://messenger.com/",
-        image: "/images/icons/apps/messenger.png"
-      },
-      {
-        name: "Paramount Plus",
-        link: "https://paramountplus.com",
-        image: "/images/icons/apps/paramount.png"
-      },
-      {
-        name: "Pinterest",
-        link: "https://pinterest.com",
-        image: "/images/icons/apps/pinterest.png"
-      },
-      {
-        name: "Pixlr",
-        link: "https://pixlr.com/",
-        image: "/images/icons/pix.png"
-      },
-      {
-        name: "Poki",
-        link: "https://poki.com",
-        image: "/images/icons/apps/poki.png"
-      },
-      {
-        name: "Soundcloud",
-        link: "https://soundcloud.com",
-        image: "/images/icons/apps/soundcloud.jpg"
-      },
-      {
-        name: "Spotify",
-        link: "https://open.spotify.com",
-        image: "/images/icons/apps/spotify.png",
-        say: "Spotify is currently not working on the proxy."
-      },
-      {
-        name: "Telegram",
-        link: "https://web.telegram.org/",
-        image: "/images/icons/apps/telegram.png"
-      },
-      {
-        name: "Tiktok",
-        link: "https://tiktok.com",
-        image: "/images/icons/apps/tiktok.png"
-      },
-      {
-        name: "Tumblr",
-        link: "https://tumblr.com/",
-        image: "/images/icons/apps/tumblr.png"
-      },
-      {
-        name: "Twitch",
-        link: "https://twitch.tv",
-        image: "/images/icons/apps/twitch-tv.png"
-      },
-      {
-        name: "Twitter",
-        link: "https://twitter.com",
-        image: "/images/icons/apps/twitter.png"
-      },
-      {
-        name: "VS Code",
-        link: "https://vscode.dev",
-        image: "/images/icons/apps/vscode.png"
-      },
-      {
-        name: "Y8 Games",
-        link: "https://y8.com/",
-        image: "/images/icons/apps/y8.png"
-      },
-      {
-        name: "YouTube",
-        link: "https://youtube.com",
-        image: "/images/icons/apps/yt.png"
-      },
-      {
-        name: "Whatsapp",
-        link: "https://web.whatsapp.com/",
-        image: "/images/icons/apps/whatsapp.png"
-      },
-      {
-        name: "Wattpad",
-        link: "https://wattpad.com/",
-        image: "/images/icons/apps/wattpad.webp"
-      },
-      {
-        name: "ChatGPT Clone",
-        link: "https://chat.shuttle.rip/",
-        image: "/images/icons/chatgpt.png"
-      },
-      {
-        name: "Discord - Login",
-        link: "https://canary.discord.com/login",
-        image: "/images/icons/discord.jpg",
-        blank: "true"
-      },
-      {
-        name: "HD Today",
-        link: "https://hdtoday.tv",
-        image: "/images/icons/hd.png"
-      },
-      {
-        name: "Roblox (Now.GG)",
-        link: "https://now.gg/play/roblox-corporation/5349/roblox",
-        image: "/images/icons/roblox.png"
-      },
-      {
-        name: "Now.GG",
-        link: "https://now.gg",
-        image: "/images/icons/now-gg.png"
+    {
+        "name": "Amazon",
+        "url": "/static/iframe.html#https://amazon.com/",
+        "image": "/images/icons/apps/amazon.png"
+    },
+    {
+        "name": "BuzzFeed Quizzes",
+        "url": "/static/iframe.html#https://buzzfeed.com/quizzes",
+        "image": "/images/icons/apps/buzzfeed.png"
+    },
+    {
+        "name": "Movie Web",
+        "url": "/static/iframe.html#https://movie-web.app",
+        "image": "https://movie-web.app/apple-touch-icon.png"
+    },
+    {
+        "name": "Scratch",
+        "url": "/static/iframe.html#https://scratch.mit.edu",
+        "image": "/images/icons/scratch.jpg"
+    },
+    {
+        "name": "Chess.com",
+        "url": "/static/iframe.html#https://chess.com",
+        "image": "/images/icons/chess.png"
+    },
+    {
+        "name": "Cool Math Games",
+        "url": "/static/iframe.html#https://coolmathgames.com",
+        "image": "/images/icons/apps/coolmath.png"
+    },
+    {
+        "name": "Discord",
+        "url": "/static/iframe.html#https://canary.discord.com",
+        "image": "/images/icons/apps/discord.jpg"
+    },
+    {
+        "name": "DuckDuckGo",
+        "url": "/static/iframe.html#https://start.duckduckgo.com/",
+        "image": "/images/icons/apps/duckduckgo.png"
+    },
+    {
+        "name": "ESPN",
+        "url": "/static/iframe.html#https://www.espn.com/watch/",
+        "image": "/images/icons/apps/espn.webp"
+    },
+    {
+        "name": "Fifa Rosters",
+        "url": "/static/iframe.html#https://fifarosters.com/",
+        "image": "/images/icons/fifa.png"
+    },
+    {
+        "name": "Firefox Web Browser",
+        "url": "/static/iframe.html#https://replit.com/@cooleddie001/Firefox-Legacy?v=1",
+        "image": "/images/icons/apps/firefox.png"
+    },
+    {
+        "name": "Flix HQ",
+        "url": "/static/iframe.html#https://flixhq.to",
+        "image": "/images/icons/apps/flixhq.png"
+    },
+    {
+        "name": "Geforce NOW",
+        "url": "/static/iframe.html#https://play.geforcenow.com",
+        "image": "/images/icons/apps/geforce-now.png"
+    },
+    {
+        "name": "Github",
+        "url": "/static/iframe.html#https://github.com",
+        "image": "/images/icons/apps/github.png"
+    },
+    {
+        "name": "Google",
+        "url": "/static/iframe.html#https://google.com",
+        "image": "/images/icons/apps/google.png"
+    },
+    {
+        "name": "HBO MAX",
+        "url": "/static/iframe.html#https://www.hbomax.com/",
+        "image": "/images/icons/apps/hbo.webp"
+    },
+    {
+        "name": "Messenger",
+        "url": "/static/iframe.html#https://messenger.com/",
+        "image": "/images/icons/apps/messenger.png"
+    },
+    {
+        "name": "Paramount Plus",
+        "url": "/static/iframe.html#https://paramountplus.com",
+        "image": "/images/icons/apps/paramount.png"
+    },
+    {
+        "name": "Pinterest",
+        "url": "/static/iframe.html#https://pinterest.com",
+        "image": "/images/icons/apps/pinterest.png"
+    },
+    {
+        "name": "Pixlr",
+        "url": "/static/iframe.html#https://pixlr.com/",
+        "image": "/images/icons/pix.png"
+    },
+    {
+        "name": "Poki",
+        "url": "/static/iframe.html#https://poki.com",
+        "image": "/images/icons/apps/poki.png"
+    },
+    {
+        "name": "Soundcloud",
+        "url": "/static/iframe.html#https://soundcloud.com",
+        "image": "/images/icons/apps/soundcloud.jpg"
+    },
+    {
+        "name": "Spotify",
+        "url": "/static/iframe.html#https://open.spotify.com",
+        "image": "/images/icons/apps/spotify.png",
+        "say": "Spotify is currently not working on the proxy."
+    },
+    {
+        "name": "Telegram",
+        "url": "/static/iframe.html#https://web.telegram.org/",
+        "image": "/images/icons/apps/telegram.png"
+    },
+    {
+        "name": "Tiktok",
+        "url": "/static/iframe.html#https://tiktok.com",
+        "image": "/images/icons/apps/tiktok.png"
+    },
+    {
+        "name": "Tumblr",
+        "url": "/static/iframe.html#https://tumblr.com/",
+        "image": "/images/icons/apps/tumblr.png"
+    },
+    {
+        "name": "Twitch",
+        "url": "/static/iframe.html#https://twitch.tv",
+        "image": "/images/icons/apps/twitch-tv.png"
+    },
+    {
+        "name": "Twitter",
+        "url": "/static/iframe.html#https://twitter.com",
+        "image": "/images/icons/apps/twitter.png"
+    },
+    {
+        "name": "VS Code",
+        "url": "/static/iframe.html#https://vscode.dev",
+        "image": "/images/icons/apps/vscode.png"
+    },
+    {
+        "name": "Y8 Games",
+        "url": "/static/iframe.html#https://y8.com/",
+        "image": "/images/icons/apps/y8.png"
+    },
+    {
+        "name": "YouTube",
+        "url": "/static/iframe.html#https://youtube.com",
+        "image": "/images/icons/apps/yt.png"
+    },
+    {
+        "name": "Whatsapp",
+        "url": "/static/iframe.html#https://web.whatsapp.com/",
+        "image": "/images/icons/apps/whatsapp.png"
+    },
+    {
+        "name": "Wattpad",
+        "url": "/static/iframe.html#https://wattpad.com/",
+        "image": "/images/icons/apps/wattpad.webp"
+    },
+    {
+        "name": "ChatGPT Clone",
+        "url": "/static/iframe.html#https://chat.shuttle.rip/",
+        "image": "/images/icons/chatgpt.png"
+    },
+    {
+        "name": "Discord - Login",
+        "url": "/static/iframe.html#https://canary.discord.com/login",
+        "image": "/images/icons/discord.jpg",
+        "blank": "true"
+    },
+    {
+        "name": "HD Today",
+        "url": "/static/iframe.html#https://hdtoday.tv",
+        "image": "/images/icons/hd.png"
+    },
+    {
+        "name": "Roblox (Now.GG)",
+        "url": "/static/iframe.html#https://now.gg/play/roblox-corporation/5349/roblox",
+        "image": "/images/icons/roblox.png"
+    },
+    {
+        "name": "Now.GG",
+        "url": "/static/iframe.html#https://now.gg",
+        "image": "/images/icons/now-gg.png"
     }
 ]
