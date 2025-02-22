@@ -65,12 +65,18 @@
             text-align: center;
         }
 
+        .typewriter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .typewriter h1 {
             font-size: 6rem; /* Increased font size */
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 2rem; /* Increased margin */
+            margin: 0; /* Remove default margin */
             animation: title-fade 1s ease-in-out;
         }
 
@@ -81,7 +87,7 @@
 
         .typewriter h1#span-white {
             color: white;
-            padding-left: 1rem;
+            padding-left: 1rem; /* Space between MyProxy and | Apps */
         }
 
         .main-2 {
