@@ -1,287 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Favicon and Tab Title -->
-  <link rel="shortcut icon" id="dynamic-favicon" href="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927">
-  <title id="dynamic-title">MyProxy | Games</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyProxy | Games</title>
+    <link rel="shortcut icon" href="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #222; /* Dark theme background */
+        }
 
-  <!-- Meta Tags -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Moon's formation: Scientists say a giant impact blasted the raw material for the moon off the primitive molten Earth and into orbit, forming the moon.">
-  <meta name="keywords" content="Computer Science, Technology, Photography, Nature, Tech Support, Tech Help, Local Tech Support">
-  <link rel="canonical" href="https://www.space.com/topics/moon">
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100px; /* Increased width of sidebar */
+            background-color: rgba(255, 255, 255, 0.2); /* Lighter sidebar (with a semi-transparent white) */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align icons to the top */
+            align-items: center; /* Centering horizontally */
+            padding-top: 3rem; /* Increased padding on top */
+            z-index: 999;
+        }
 
-  <!-- Site Stylesheets -->
-  <link rel="stylesheet" href="/css/m.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        .sidebar .navbar-link {
+            color: white;
+            padding: 1.5rem 0; /* Increased padding */
+            font-size: 1.8rem; /* Increased font size */
+            transition: background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem; /* Increased space between the icons */
+            text-decoration: none;
+        }
 
-  <!-- Main Site Scripts -->
-  <script src="https://kit.fontawesome.com/1237c86ba0.js" crossorigin="anonymous"></script>
-  <script src="/scripts/learning.js"></script>
-  <script src="./contact/mathematics.js"></script>
-  <script src="./contact/geography.js"></script>
-  <script src="/scripts/enlighten.js"></script>
+        .sidebar .navbar-link:hover {
+            background-color: #ff6347;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      background-color: #222; /* Dark theme background */
-    }
+        .sidebar .navbar-link img {
+            width: 50px; /* Increased icon size */
+            height: 50px; /* Increased icon size */
+        }
 
-    /* Header Styles */
-    .header {
-      text-align: center;
-      padding: 2rem 0;
-      margin-top: 5rem; /* Increased margin-top to move the text further down */
-    }
+        /* Main Content Styles */
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 6rem; /* Increased top margin */
+            padding: 3rem; /* Increased padding */
+        }
 
-    .header h1 {
-      font-size: 6rem; /* Larger font size for MyProxy */
-      font-weight: bold;
-      color: gray;
-      text-shadow: 3px 3px 5px white; /* White outline effect */
-      display: inline-block;
-    }
+        .main-1 {
+            text-align: center;
+        }
 
-    .header h1 span {
-      color: white;
-      font-size: 6rem; /* Same size as "MyProxy" */
-      padding-left: 1rem;
-    }
+        .typewriter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    /* Sidebar Styles */
-    .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 100px; /* Increased width of sidebar */
-      background-color: rgba(255, 255, 255, 0.2); /* Lighter sidebar (with a semi-transparent white) */
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start; /* Align icons to the top */
-      align-items: center; /* Centering horizontally */
-      padding-top: 3rem; /* Increased padding on top */
-      z-index: 999;
-    }
+        .typewriter h1 {
+            font-size: 6rem; /* Increased font size */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0; /* Remove default margin */
+            animation: title-fade 1s ease-in-out;
+        }
 
-    .sidebar .navbar-link {
-      color: white;
-      padding: 1.5rem 0; /* Increased padding */
-      font-size: 1.8rem; /* Increased font size */
-      transition: background-color 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1.5rem; /* Increased space between the icons */
-    }
+        .typewriter h1#span {
+            color: gray;
+            text-shadow: 3px 3px 5px white; /* White outline effect */
+        }
 
-    .sidebar .navbar-link:hover {
-      background-color: #ff6347;
-    }
+        .typewriter h1#span-white {
+            color: white;
+            padding-left: 1rem; /* Space between MyProxy and | Apps */
+        }
 
-    .sidebar .navbar-link img {
-      width: 50px; /* Increased icon size */
-      height: 50px; /* Increased icon size */
-    }
+        .main-2 {
+            margin-top: 3rem; /* Increased margin */
+        }
 
-    /* Main Content Styles */
-    .main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 6rem; /* Increased top margin */
-      padding: 3rem; /* Increased padding */
-    }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
 
-    .title {
-      color: #fff;
-      font-size: 4rem; /* Increased font size */
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 2rem; /* Increased margin */
-      text-align: center;
-      animation: title-fade 1s ease-in-out;
-    }
+        #search-bar {
+            padding: 1.5rem; /* Increased padding */
+            width: 50vh; /* Increased width */
+            border-radius: 30px; /* Slightly more rounded corners */
+            background: #444; /* Darker gray color */
+            color: white;
+            border: none;
+            outline: none;
+            font-size: 1.5rem; /* Increased font size */
+            text-align: center;
+            transition: width 0.4s ease-in-out;
+        }
 
-    .input-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 3rem; /* Increased margin */
-    }
+        #search-bar:focus {
+            width: 70vh; /* Increased focus width */
+        }
 
-    #searchbarbottom {
-      padding: 1.5vw; /* Increased padding */
-      width: 50vh; /* Increased width */
-      border-radius: 30px; /* Slightly more rounded corners */
-      background: #444;
-      color: white;
-      border: none;
-      outline: none;
-      font-size: 26px; /* Increased font size */
-      text-align: center;
-      transition: width 0.4s ease-in-out;
-    }
+        /* Game Grid Styles */
+        .game-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem; /* Increased gap between cards */
+            margin-top: 3rem; /* Increased margin */
+        }
 
-    #searchbarbottom:focus {
-      width: 70vh; /* Increased focus width */
-    }
+        .game-card {
+            background: #444;
+            border-radius: 10px;
+            padding: 1.5rem; /* Increased padding */
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-    #category {
-      margin-top: 1.5rem; /* Increased margin */
-      padding: 1rem; /* Increased padding */
-      border-radius: 7px; /* Increased border radius */
-      background: #444;
-      color: white;
-      border: none;
-      outline: none;
-      font-size: 1.2rem; /* Increased font size */
-    }
+        .game-card:hover {
+            transform: scale(1.05);
+        }
 
-    /* Animation Keyframes */
-    @keyframes title-fade {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
+        .game-card img {
+            width: 100px; /* Increased image size */
+            height: 100px; /* Increased image size */
+            border-radius: 10px;
+        }
 
-    /* Particle effect background */
-    #particles-js {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-  </style>
+        .game-card h2 {
+            color: white;
+            font-size: 1.5rem; /* Increased font size */
+            margin-top: 1rem; /* Increased margin */
+        }
+
+        /* Animation Keyframes */
+        @keyframes title-fade {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Particle effect background */
+        #particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
 </head>
-
 <body>
-  <!-- Header with MyProxy and Games -->
-  <div class="header">
-    <h1>MyProxy <span>| Games</span></h1>
-  </div>
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <!-- MyProxy Icon -->
-    <a href="/./" class="navbar-link">
-      <img src="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927" alt="MyProxy Icon">
-    </a>
-    <!-- Games Icon -->
-    <a class="navbar-link" href="/./events">
-      <img src="https://static-00.iconduck.com/assets.00/game-controller-outline-icon-512x375-hjactmfq.png" alt="Games Icon">
-    </a>
-    <!-- Apps Icon -->
-    <a class="navbar-link" href="/./news">
-      <img src="https://cdn-icons-png.flaticon.com/512/35/35823.png" alt="Apps Icon">
-    </a>
-    <!-- Settings Icon -->
-    <a class="navbar-link" href="/./diagnostic">
-      <img src="https://cdn-icons-png.flaticon.com/512/44/44724.png" alt="Settings Icon">
-    </a>
-  </div>
-
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
-
-  <!-- Main Content -->
-  <div class="main">
-
-    <div class="input-container">
-      <input type="text" id="searchbarbottom" placeholder="Search a game">
-      <select id="category" name="category">
-        <option value="all">All</option>
-        <option value="2P">Multiplayer</option>
-        <option value="sports">Sports</option>
-        <option value="flash">Flash</option>
-        <option value="emu">Emulator</option>
-        <option value="local">Local</option>
-      </select>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- MyProxy Icon -->
+        <a href="/./" class="navbar-link">
+            <img src="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927" alt="MyProxy Icon">
+        </a>
+        <!-- Games Icon -->
+        <a class="navbar-link" href="/./events">
+            <img src="https://static-00.iconduck.com/assets.00/game-controller-outline-icon-512x375-hjactmfq.png" alt="Games Icon">
+        </a>
+        <!-- Apps Icon -->
+        <a class="navbar-link" href="/./news">
+            <img src="https://cdn-icons-png.flaticon.com/512/35/35823.png" alt="Apps Icon">
+        </a>
+        <!-- Settings Icon -->
+        <a class="navbar-link" href="/./diagnostic">
+            <img src="https://cdn-icons-png.flaticon.com/512/44/44724.png" alt="Settings Icon">
+        </a>
     </div>
 
-    <div class="pinned-apps"></div>
-    <div class="container-apps"></div>
-  </div>
+    <!-- Particle Background -->
+    <div id="particle-container"></div>
 
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS("particles-js", {
-      "particles": {
-        "number": {
-          "value": 100,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#aaa"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 5
-          }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": true,
-          "anim": {
-            "enable": true,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
-          }
-        },
-        "size": {
-          "value": 4,
-          "random": true,
-          "anim": {
-            "enable": true,
-            "speed": 4,
-            "size_min": 0.1,
-            "sync": false
-          }
-        },
-        "move": {
-          "enable": true,
-          "speed": 8,
-          "direction": "random",
-          "random": true,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false
+    <!-- Main Content -->
+    <div class="main">
+        <div class="main-1">
+            <div class="typewriter">
+                <h1 id="span">MyProxy</h1>
+                <h1 id="span-white">| Apps</h1>
+            </div>
+        </div>
+        <div class="main-2">
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search a game">
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Grid Section -->
+    <section class="game-grid" id="game-grid"></section>
+
+    <!-- Scripts -->
+    <script>
+        // Fetch games.json and display apps
+        let games = [];
+
+        fetch('games.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                games = data;
+                displayGames(games); // Display all games initially
+            })
+            .catch(error => console.error('There was a problem with the fetch operation:', error));
+
+        // Function to display games
+        function displayGames(games) {
+            const gameGrid = document.getElementById('game-grid');
+            gameGrid.innerHTML = ''; // Clear existing content
+
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.classList.add('game-card');
+                gameCard.onclick = () => window.location.href = game.url;
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.name}">
+                    <h2>${game.name}</h2>
+                `;
+                gameGrid.appendChild(gameCard);
+            });
         }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        }
-      },
-      "retina_detect": true
-    });
-  </script>
+
+        // Search functionality
+        const searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredGames = games.filter(game => 
+                game.name.toLowerCase().includes(searchTerm) || 
+                game.name.toLowerCase().startsWith(searchTerm)
+            );
+            displayGames(filteredGames); // Update displayed games
+        });
+    </script>
+
+    <!-- Particle Effect Script -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particle-container", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#aaa"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 4,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 8,
+                    "direction": "random",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
-
 </html>
+<script src="scripts.js"></script>
