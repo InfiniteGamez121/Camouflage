@@ -111,37 +111,6 @@
       margin-left: 100px; /* Adjusted to account for the sidebar width */
     }
 
-    .main-2 {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 1rem;
-    }
-
-    .button-width button {
-      padding: 1.5rem; /* Increased padding */
-      width: 20vh; /* Increased width for the button */
-      background: #1a1a1a; /* Darker background for the button */
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 1.2rem; /* Increased font size */
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .button-width button:hover {
-      background: #333; /* Slightly lighter background on hover */
-    }
-
     .search-container {
       margin-top: 1rem;
       width: 100%;
@@ -211,20 +180,13 @@
       height: 100%;
       pointer-events: none;
     }
-
-    .game-grid {
-      margin-top: 2rem;
-      width: 100%;
-      max-width: 800px;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
   <div class="sidebar">
     <a class="icon" href="/./"><img id="INImg" src="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927" alt="Icon"></a>
-    <a class="sidebar-link" href="/./events"><img src="https://static-00.iconduck.com/assets.00/game-controller-outline-icon-512x375-hjactmfq.png" alt="Games" class="sidebar-icon"></a>
-    <a class="sidebar-link" href="/./news"><img src="https://cdn-icons-png.flaticon.com/512/35/35823.png" alt="Apps" class="sidebar-icon"></a>
+    <a class="sidebar-link" href="/games.html"><img src="https://static-00.iconduck.com/assets.00/game-controller-outline-icon-512x375-hjactmfq.png" alt="Games" class="sidebar-icon"></a>
+    <a class="sidebar-link" href="/apps.html"><img src="https://cdn-icons-png.flaticon.com/512/35/35823.png" alt="Apps" class="sidebar-icon"></a>
     <a class="sidebar-link" href="/./diagnostic"><img src="https://cdn-icons-png.flaticon.com/512/44/44724.png" alt="Settings" class="sidebar-icon"></a>
   </div>
   <div id="particles-js">
@@ -234,19 +196,9 @@
       <div class="description-box">
         <p class="description">Hello, this is a community I and a few other contributors made. This is a website created for proxy users to bypass website restrictions.</p>
       </div>
-      <div class="main-2">
-        <div class="button-container">
-          <div class="button-width">
-            <button onclick="window.location.href = '#game-grid'">Search</button>
-          </div>
-        </div>
-      </div>
       <div class="search-container">
         <input type="text" id="search-bar" placeholder="Type URL here..." />
       </div>
-      <section class="game-grid" id="game-grid">
-        <!-- Game grid content goes here -->
-      </section>
       <div class="socials-box">
         <h3 class="socials-title">Socials</h3>
         <p class="socials-content">
