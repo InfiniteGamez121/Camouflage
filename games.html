@@ -1,536 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camouflage</title>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <!-- Favicon and Tab Title -->
+  <link rel="shortcut icon" id="dynamic-favicon" href="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927">
+  <title id="dynamic-title">MyProxy | Games</title>
 
-        html {
-            margin: 0;
-            padding: 0;
-	    background: url('/bg.jpg');
-            color: white;
-            font-family: Arial, sans-serif;
-            height: 100%;
-            overflow: hidden;
-        }
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Moon's formation: Scientists say a giant impact blasted the raw material for the moon off the primitive molten Earth and into orbit, forming the moon.">
+  <meta name="keywords" content="Computer Science, Technology, Photography, Nature, Tech Support, Tech Help, Local Tech Support">
+  <link rel="canonical" href="https://www.space.com/topics/moon">
 
-        body {
-            margin: 0;
-            padding: 0;
-	    background: url('/bg.jpg');
-            color: white;
-            font-family: Arial, sans-serif;
-            height: 100%;
-            overflow: hidden;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-	    background-position: center;
-            background-size: 100%;
-        }
-        .crosshair {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    pointer-events: none;
-    background: none;
-    border: 4px solid rgba(8, 242, 8, 0.8);
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-	}	
+  <!-- Site Stylesheets -->
+  <link rel="stylesheet" href="/css/m.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-        #particle-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-        .sidebar {
-	backdrop-filter: blur(2vh);
-	width: 200px;
-	height: 100%;
-	background-image: url('camouflage.gif');
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
-	position: fixed;
-	top: 0;
-	box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
-	transition: left 0.4s ease;
-	}
-	
-	.sidebar.show {
-	left: 0;
-	}
-	
-	.sidebar .logo {
-	margin: 20px 0;
-	text-align: center;
-	width: 100%;
-	}
-	
-	.sidebar .logo img {
-	width: 50px;
-	height: 50px;
-	}
-	
-	.sidebar .logo h1 {
-	font-size: 1.5em;
-	color: white;
-	margin-top: 10px;
-	opacity: 0;
-	animation: fadeIn 0.8s forwards;
-	}
-	
-	.sidebar ul {
-	list-style: none;
-	padding: 0;
-	width: 100%;
-	}
-	
-	.sidebar ul li {
-	width: 100%;
-	}
-	
-	.sidebar ul li a {
-	display: flex;
-	align-items: center;
-	padding: 15px;
-	text-decoration: none;
-	color: #d1d1e0;
-	font-size: 1.1em;
-	transition: background 0.3s ease, color 0.3s ease;
-	border-radius: 0.2rem;
-	}
-	
-	.sidebar ul li a:hover {
-	background: rgba(79, 255, 79, 0.7);
-	color: white;
-	}
-	
-	.sidebar ul li a i {
-	margin-right: 15px;
-	font-size: 1.5em;
-	}
-	
-	.sidebar ul li a span {
-	opacity: 0;
-	animation: fadeIn 0.8s forwards;
-	white-space: nowrap;
-	}
-	
-	.sidebar .footer {
-	margin-top: auto;
-	margin-bottom: 20px;
-	text-align: center;
-	color: #565676;
-	font-size: 0.9em;
-	}
-	
-        .toggle-btn {
-	    display:  none;
-            position: absolute;
-            top: 15px;
-            margin-left: 15px;
-            margin-right: 15px;
-            padding: 10px 20px;
-            background: #267b2a;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            z-index: 1000;
-            transition: background 0.3s ease;
-        }
+  <!-- Main Site Scripts -->
+  <script src="https://kit.fontawesome.com/1237c86ba0.js" crossorigin="anonymous"></script>
+  <script src="/scripts/learning.js"></script>
+  <script src="./contact/mathematics.js"></script>
+  <script src="./contact/geography.js"></script>
+  <script src="/scripts/enlighten.js"></script>
 
-        .toggle-btn:hover {
-            background: #3ac041;
-        }
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      background-color: #222; /* Dark theme background */
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+    /* Header Styles */
+    .header {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 5rem; /* Increased margin-top to move the text further down */
+    }
 
-        .games-section {
-            margin: 20px auto;
-            width: 80%;
-        }
+    .header h1 {
+      font-size: 6rem; /* Larger font size for MyProxy */
+      font-weight: bold;
+      color: gray;
+      text-shadow: 3px 3px 5px white; /* White outline effect */
+      display: inline-block;
+    }
 
-        .search-bar {
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    .header h1 span {
+      color: white;
+      font-size: 6rem; /* Same size as "MyProxy" */
+      padding-left: 1rem;
+    }
 
-        .search-bar input {
-            width: 60%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 2px solid rgba(0, 128, 0, 0.8);
-            font-size: 1em;
-            background: rgba(10, 20, 15, 0.9);
-            color: white;
-        }
+    /* Sidebar Styles */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100px; /* Increased width of sidebar */
+      background-color: rgba(255, 255, 255, 0.2); /* Lighter sidebar (with a semi-transparent white) */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Align icons to the top */
+      align-items: center; /* Centering horizontally */
+      padding-top: 3rem; /* Increased padding on top */
+      z-index: 999;
+    }
 
-        .games-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
+    .sidebar .navbar-link {
+      color: white;
+      padding: 1.5rem 0; /* Increased padding */
+      font-size: 1.8rem; /* Increased font size */
+      transition: background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.5rem; /* Increased space between the icons */
+    }
 
-        .game-card {
-            width: 150px;
-            height: 150px;
-            background: rgba(0, 155, 0, 0.6);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: transparent;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.6555555555555555555555555555555555555555555555555555555555555555555555555s ease;
-            text-align: center;
-            cursor: pointer;
-        }
+    .sidebar .navbar-link:hover {
+      background-color: #ff6347;
+    }
 
-        .game-card:hover {
-	background: rgba(127, 134, 127, 0.81);
-	color: rgb(145, 247, 94);
-	}
+    .sidebar .navbar-link img {
+      width: 50px; /* Increased icon size */
+      height: 50px; /* Increased icon size */
+    }
 
-        .game-card img,
-        .game-card video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s ease;
-        }
+    /* Main Content Styles */
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 6rem; /* Increased top margin */
+      padding: 3rem; /* Increased padding */
+    }
 
-        .game-card video {
-            filter: brightness(0.5);
-            visibility: hidden;
-        }
+    .title {
+      color: #fff;
+      font-size: 4rem; /* Increased font size */
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2rem; /* Increased margin */
+      text-align: center;
+      animation: title-fade 1s ease-in-out;
+    }
 
-        .game-card:hover video {
-            visibility: visible; 
-            filter: brightness(1); 
-        }
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 3rem; /* Increased margin */
+    }
 
-        .game-card:hover img {
-            filter: brightness(0.5); 
-        }
+    #searchbarbottom {
+      padding: 1.5vw; /* Increased padding */
+      width: 50vh; /* Increased width */
+      border-radius: 30px; /* Slightly more rounded corners */
+      background: #444;
+      color: white;
+      border: none;
+      outline: none;
+      font-size: 26px; /* Increased font size */
+      text-align: center;
+      transition: width 0.4s ease-in-out;
+    }
 
-        .game-card .game-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.2em;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    #searchbarbottom:focus {
+      width: 70vh; /* Increased focus width */
+    }
 
-        .game-card:hover .game-text {
-            opacity: 1; 
-        }
+    #category {
+      margin-top: 1.5rem; /* Increased margin */
+      padding: 1rem; /* Increased padding */
+      border-radius: 7px; /* Increased border radius */
+      background: #444;
+      color: white;
+      border: none;
+      outline: none;
+      font-size: 1.2rem; /* Increased font size */
+    }
 
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 1); 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            z-index: 99999;
-            opacity: 1;
-            transition: opacity 1s ease-in-out;
-        }
+    /* Animation Keyframes */
+    @keyframes title-fade {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
 
-        .loading-screen.loaded {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-logo {
-            margin-bottom: 20px;
-        }
-
-        .loading-logo img {
-            width: 150px;
-            height: 150px;
-        }
-
-        .loading-bar {
-            width: 80%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .loading-progress {
-            height: 100%;
-            width: 0;
-            background: #00ff00;
-            transition: width 0.1s linear;
-        }
-
-    </style>
+    /* Particle effect background */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
 </head>
-<body id="body">
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">
-        </div>
-        <div class="loading-bar">
-            <div class="loading-progress" id="progressBar"></div>
-        </div>
-        <div>Loading...</div>
-    </div>
-    <div id="particle-container"></div>
-    <div id="crosshair" class="crosshair"></div>
-    <button class="toggle-btn"><i class="fa fa-bars"></i></button>
-    <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <h1>Camouflage</h1>
-        </div>
-        <ul>
-            <li><a href="/"><i class="fa fa-home"></i><span>Home</span></a></li>
-            <li><a href="/apps.html"><i class="material-icons">apps</i><span>Apps</span></a></li>
-            <li><a href="/games/"><i class="fa fa-gamepad"></i><span>Games</span></a></li>
-        </ul>
-    </div>
 
+<body>
+  <!-- Header with MyProxy and Games -->
+  <div class="header">
+    <h1>MyProxy <span>| Games</span></h1>
+  </div>
 
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- MyProxy Icon -->
+    <a href="/./" class="navbar-link">
+      <img src="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927" alt="MyProxy Icon">
+    </a>
+    <!-- Games Icon -->
+    <a class="navbar-link" href="/./events">
+      <img src="https://static-00.iconduck.com/assets.00/game-controller-outline-icon-512x375-hjactmfq.png" alt="Games Icon">
+    </a>
+    <!-- Apps Icon -->
+    <a class="navbar-link" href="/./news">
+      <img src="https://cdn-icons-png.flaticon.com/512/35/35823.png" alt="Apps Icon">
+    </a>
+    <!-- Settings Icon -->
+    <a class="navbar-link" href="/./diagnostic">
+      <img src="https://cdn-icons-png.flaticon.com/512/44/44724.png" alt="Settings Icon">
+    </a>
+  </div>
 
-    <div class="games-section">
-<div class="search-bar">
-    <input type="text" placeholder="Search..." id="gameSearch">
-</div>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
 
-        <div class="games-container" id="games">
-            <div onclick="gameshow('https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://218463058-163927403382736103.preview.editmysite.com/uploads/b/139890129-297434511671085883/files/mm.xml&container=ig')" class="game-card">
-                <img src="/img/monkeymart.png" alt="Game 1">
-                <div class="game-text">Monkey Mart</div>
-            </div>
-            <div onclick="gameshow('https://orteil.dashnet.org/cookieclicker/')" class="game-card">
-                <img src="/img/cookie.png" alt="Game 2">
-                <div class="game-text">Cookie Clicker</div>
-            </div>
-            <div onclick="window.location.href = '/games/basketball-stars'" class="game-card">
-                <img src="/img/basketstars.png" alt="Game 3">
-                <div class="game-text">Basketball Stars</div>
-            </div>
-            <div onclick="gameshow('https://smashkarts.io/')" class="game-card">
-                <img src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=1200,height=1200,fit=cover,f=png/9c9e529b14731be871b07b89660bbc2a.png" alt="Game 4">
-                <div class="game-text">SmashCarts</div>
-            </div>
-            <div onclick="gameshow('https://lumpytouch.itch.io/bad-monday-simulator')" class="game-card">
-                <img src="https://img.itch.zone/aW1nLzkxMzI5NjkucG5n/original/splulK.png" alt="Game 4">
-                <div class="game-text">Bad Monday Sim</div>
-            </div>
-            <div class="games-container" id="games">
-                <div onclick="window.location.href = '/games/1v1lol'" class="game-card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_TUfwfKwF7q00Rqaq8fqI_JrsLPNElDcI0Q&s" alt="Game 1">
-                    <div class="game-text">1v1.lol</div>
-                </div>
-                <div onclick="window.location.href = '/games/bitlife'" class="game-card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4ODZjp9Qf2WrRr0ashD-38bqUOUDdKd3zfg&s" alt="Game 1">
-                    <div class="game-text">Bitlife</div>
-                </div>
-                <div onclick="window.location.href = '/games/core-ball'" class="game-card">
-                    <img src="https://www.cokogames.com/wp-content/uploads/thumbs/custom/C/coreball.jpg" alt="Game 1">
-                    <div class="game-text">Coreball</div>
-                </div>
-                <div onclick="window.location.href = '/games/flappybird'" class="game-card">
-                    <img src="https://static.wikia.nocookie.net/flappybird/images/5/50/Flappybirdlogo.jpg/revision/latest?cb=20140226220248" alt="Game 1">
-                    <div class="game-text">Flappy Bird</div>
-                </div>
-                <div onclick="window.location.href = '/games/geodash'" class="game-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/Logo_of_Geometry_Dash.svg/1200px-Logo_of_Geometry_Dash.svg.png" alt="Game 1">
-                    <div class="game-text">Geometry Dash</div>
-                </div>
-                <div onclick="window.location.href = '/games/google-feud/'" class="game-card">
-                    <img src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/ce72bcf0-3b49-471d-b38d-8d99287c7d8e.png" alt="Game 1">
-                    <div class="game-text">Google Feud</div>
-                </div>
-                <div onclick="window.location.href = '/tiny-fishing'" class="game-card">
-                    <img src="https://www.cokogames.com/wp-content/uploads/thumbs/custom/T/tiny-fishing.jpeg" alt="Game 1">
-                    <div class="game-text">Tiny Fishing</div>
-                </div>
+  <!-- Main Content -->
+  <div class="main">
+
+    <div class="input-container">
+      <input type="text" id="searchbarbottom" placeholder="Search a game">
+      <select id="category" name="category">
+        <option value="all">All</option>
+        <option value="2P">Multiplayer</option>
+        <option value="sports">Sports</option>
+        <option value="flash">Flash</option>
+        <option value="emu">Emulator</option>
+        <option value="local">Local</option>
+      </select>
     </div>
 
-    <script>
-        let progress = 0;
-        const progressBar = document.getElementById('progressBar');
-        const loadingScreen = document.getElementById('loadingScreen');
-        
-        function updateProgressBar() {
-            progress += 1;
-            progressBar.style.width = progress + '%';
-            
-            if (progress >= 100) {
-                setTimeout(() => {
-                    loadingScreen.classList.add('loaded');
-                }, 1000);
-            }
+    <div class="pinned-apps"></div>
+    <div class="container-apps"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 100,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#aaa"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 4,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 4,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "move": {
+          "enable": true,
+          "speed": 8,
+          "direction": "random",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
         }
-
-        setInterval(updateProgressBar, 50);
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loadingScreen.classList.add('loaded');
-            }, 2000); 
-        });
-        function gameshow(url) {
-            window.location.href = "/static/iframe.html#" + url;
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
         }
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-97C832V55B"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-97C832V55B');
-
-          const toggleBtn = document.querySelector('.toggle-btn');
-        const sidebar = document.querySelector('.sidebar');
-
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('show');
-        });
-        </script>
-        <!-- Cursor for da cool effect, this file is so fuckin un-organized :( -->
-			<script>
-				let lastTime = 0;
-				const throttleDelay = 10;
-				const crosshair = document.querySelector('.crosshair');
-				let crosshairPosition = { x: 0, y: 0 };
-				let targetPosition = { x: 0, y: 0 };
-				const lerpSpeed = 0.2;
-
-				let cursorSize = 30;
-				let cursorOpacity = 1;
-
-				document.addEventListener('mousemove', function (e) {
-					const currentTime = new Date().getTime();
-					if (currentTime - lastTime >= throttleDelay) {
-						lastTime = currentTime;
-						targetPosition.x = e.clientX + window.scrollX;
-						targetPosition.y = e.clientY + window.scrollY;
-					}
-				});
-
-				function updateCursor() {
-					const deltaX = targetPosition.x - crosshairPosition.x;
-					const deltaY = targetPosition.y - crosshairPosition.y;
-
-					crosshairPosition.x += deltaX * lerpSpeed;
-					crosshairPosition.y += deltaY * lerpSpeed;
-
-					crosshair.style.left = (crosshairPosition.x - cursorSize / 6) + 'px';
-					crosshair.style.top = (crosshairPosition.y - cursorSize / 6) + 'px';
-					crosshair.style.width = cursorSize + 'px';
-					crosshair.style.height = cursorSize + 'px';
-					crosshair.style.opacity = cursorOpacity;
-
-					requestAnimationFrame(updateCursor);
-				}
-
-				updateCursor();
-
-				const buttons = document.querySelectorAll('.game-card');
-
-				buttons.forEach(button => {
-					button.addEventListener('mouseenter', () => {
-						cursorSize = 40;
-						crosshair.style.transition = "width 0.3s, height 0.3s, opacity 0.3s";
-						crosshair.style.left = (crosshairPosition.x - cursorSize / 12) + 'px';
-						crosshair.style.top = (crosshairPosition.y - cursorSize / 12) + 'px';
-					});
-
-					button.addEventListener('mouseleave', () => {
-						cursorSize = 30;
-						cursorOpacity = 1;
-						crosshair.style.transition = "width 0.3s, height 0.3s, opacity 0.3s";
-					}); 
-				});
-			</script>
-			<!-- Particals for even cooler effect -->
-			 <script>
-				const particleContainer = document.getElementById('particle-container');
-
-				function createParticle() {
-					const particle = document.createElement('div');
-					const size = Math.random() * 5 + 2; 
-					const startX = Math.random() * window.innerWidth;
-					const greenShades = ['#24ec24', '#03d803', '#029902', '#02a002', '#4df54d'];
-
-					particle.style.cssText = `
-						position: absolute;
-						bottom: 0;
-						left: ${startX}px;
-						width: ${size}px;
-						height: ${size}px;
-						border-radius: 50%;
-						background-color: ${greenShades[Math.floor(Math.random() * greenShades.length)]};
-						opacity: ${Math.random() * 0.8 + 0.2};
-						animation: moveParticle ${Math.random() * 3 + 2}s linear;
-					`;
-
-					particleContainer.appendChild(particle);
-
-					particle.addEventListener('animationend', () => particle.remove());
-				}
-
-				setInterval(() => {
-					if (document.hidden) return;
-					createParticle();
-				}, 200);
-
-				const style = document.createElement('style');
-				style.textContent = `
-				@keyframes moveParticle {
-					0% {
-						transform: translate(0, 0) rotate(0deg);
-					}
-					100% {
-						transform: translate(calc(-50vw + 100%), calc(-100vh)) rotate(360deg);
-					}
-				}
-				`;
-				document.head.appendChild(style);
-			 </script>
+      },
+      "retina_detect": true
+    });
+  </script>
 </body>
+
 </html>
