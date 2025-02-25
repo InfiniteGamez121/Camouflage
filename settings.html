@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="shortcut icon" id="dynamic-favicon" href="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927">
+  <title id="dynamic-title">MyProxy | Settings</title> <!-- Updated title for tab -->
+  <script src="wisdom.js?v=1"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Computer Science, Technology, Photography, Nature, Tech Support, Tech Help, Local Tech Support">
+  <link rel="stylesheet" href="/css/m.css">
+  <link rel="stylesheet" href="/css/settings.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="https://kit.fontawesome.com/1237c86ba0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Header with MyProxy | Settings -->
+  <div class="header">
+    <h1>MyProxy <span>| Settings</span></h1> <!-- Updated title here -->
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="/./" class="navbar-link">
+      <img src="https://cdn.glitch.global/f693b722-9359-4fff-9d7f-5a26e821e22b/Screenshot%202025-02-06%209.03.51%20AM.png?v=1738961067927" alt="MyProxy Icon">
+    </a>
+    <a class="navbar-link" href="/./events">
+      <img src="https://static-00.iconduck.com/assets.00/game-controller-outline-icon-512x375-hjactmfq.png" alt="Games Icon">
+    </a>
+    <a class="navbar-link" href="/./news">
+      <img src="https://cdn-icons-png.flaticon.com/512/35/35823.png" alt="Apps Icon">
+    </a>
+    <a class="navbar-link" href="/./diagnostic">
+      <img src="https://cdn-icons-png.flaticon.com/512/44/44724.png" alt="Settings Icon">
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="settings-container">
+      <div class="settings-card">
+        <h3>About:Blank</h3>
+        <p>Cloak the site in an about:blank page.</p>
+        <button onclick="AB()">Open Popup</button>
+      </div>
+      <div class="settings-card">
+        <h3>Set Panic Key</h3>
+        <p>Quickly open an educational site, when the teacher comes.</p>
+        <input type="text" id="eventKeyInput" placeholder="Panic Key" class="key-form">
+        <input class="key-form" placeholder="Panic Link" type="text" id="linkInput" value>
+        <button class="key-button" value="Save" onclick="saveEventKey()">Save</button>
+      </div>
+      <div class="settings-card">
+        <h3>Set Background Image</h3>
+        <p>Change the site's background image.</p>
+        <input type="text" id="background-input" placeholder="Enter image URL">
+        <button class="key-button" id="save-button">Save</button>
+        <button class="key-button" id="reset-button">Reset</button>
+      </div>
+      <div class="settings-card">
+        <h3>Tab Cloaker</h3>
+        <p>Makes the site look educational.</p>
+        <select id="dropdown" onchange="handleDropdownChange(this)">
+          <option value="Classroom">Default</option>
+          <option value="Classroom">Google Classroom</option>
+          <option value="Google">Google</option>
+          <option value="Drive">Google Drive</option>
+          <option value="Clever">Clever</option>
+          <option value="Schoology">Schoology</option>
+          <option value="Gmail">Gmail</option>
+          <option value="Khan">Khan Academy</option>
+        </select>
+        <input class="key-form" type="text" id="icon" placeholder="Change Tab Icon" name="icon">
+        <input class="key-form" type="text" id="name" name="name" placeholder="Change Tab Name">
+        <button class="key-button" value="Save" onclick="saveIcon(); saveName(); redirectToMainDomain()">Save</button>
+      </div>
+      <div class="settings-card">
+        <h3>Particles</h3>
+        <p>Add the particles from the previous version to the new site.</p>
+        <label class="switch">
+          <input type="checkbox" class="slider-checkbox" id="2">
+          <span class="slider-round"></span>
+        </label>
+      </div>
+      <div class="settings-card">
+        <h3>Themes!</h3>
+        <p>Choose through a selection of themes!</p>
+        <select placeholder="Solid Color Themes" id="dropdown" class="td" onchange="themeChange(this)">
+          <option disabled selected>Solid Color Themes</option>
+          <option value="d">Default</option>
+          <option value="midnight">Dark Mode</option>
+          <option value="light">Light Mode</option>
+          <option value="ocean-blue">Ocean Blue</option>
+          <option disabled selected>Gradient Themes</option>
+          <option value="black-red">Black Red</option>
+          <option value="black-blue">Black Blue</option>
+          <option value="black-green">Black Green</option>
+          <option value="black-purple">Black Purple</option>
+          <option value="black-cyan">Black Cyan</option>
+          <option value="white-purple">White Purple</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
